@@ -7,36 +7,33 @@ content="width=device-width,initial-scale=1.0">
 <head>
 <link rel="stylesheet" href="index.css">
 
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
-</script>
-<![endif]-->
+
 <title>Home</title>
 </head>
 <body>
-<div id="homehero">
-<div>
+
 <h1>
-<div id=colour">
-<b>Ncognito</b>
-</div>
+
+<b>Incognito</b>
 </h1>
 
 
 
 <main>
+<br><br>
+
 <br><br><br><br><br><br>
 <br>
 <center>
 <h2>I'm a ...</h2>
 <br>
 
-<button class="button button1">Student</button>
-<button class="button button2">Teacher</button>
+<button class="button button1" onclick="window.location.href = 'StudentSU.jsp';">Student</button>
+<button class="button button2" onclick="window.location.href = 'TeacherSU.jsp';">Teacher</button>
+<h4>Already have an account. Click Here to Login here!</h4>
 </center>
 <br><br><br><br><br><br>
 <br>
-</div>
 </main>
 </body>
 
