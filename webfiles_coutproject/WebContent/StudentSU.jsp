@@ -19,24 +19,27 @@
     <h4>Please fill in this form to create an account.</h4>
     
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Example@wayne.edu" name="email" required>
+    <label for="email"><b>Email</b></label>&nbsp&nbsp<b>(Please enter wayne state email address)</b>
+    <input type="text" placeholder="Example@wayne.edu" name="email" required pattern = "(\W|^)[\w.+\-]*@wayne\.edu(\W|$)">
 <br><br>
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" id = "password" name="psw" required>
 <br><br>
-    <label for="psw-repeat"><b>Repeat Password</b></label>&nbsp<span id='message  ></span>
+    <label for="psw-repeat"><b>Repeat Password</b></label>&nbsp<span id='message'> </span>
     <input type="password" placeholder="Repeat Password" id = "confirm_password" name="psw-repeat" required onkeyup='check();'>
   <br>  <br>
     <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">By checking you agree to our
+      <a href="#" style="color:dodgerblue">Terms & Privacy</a>
     </label>
     <br><br>
-    <h4>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</h4>
+    
 
     <div class="clearfix">
+      <form method="get" action="/index">
       <button type="button" class="cancelbtn" onclick="window.location.href = 'index.jsp';">Cancel</button>
       <button type="submit" class="signupbtn">Sign Up</button>
+   	  </form>
     </div>
   </div>
 </form>
@@ -49,11 +52,11 @@ var check = function() {
   if (document.getElementById('password').value ==
     document.getElementById('confirm_password').value) {
     document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = '&#10004';
+    document.getElementById('message').innerHTML = '<font size="35"> &#10004 </font>';
   } else 
   {
     document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = '&times';
+    document.getElementById('message').innerHTML = '<font size="35"> &times </font>';
   }
 }
 </script>
