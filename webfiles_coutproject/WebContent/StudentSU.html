@@ -1,25 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
+<head>	
 <link rel="stylesheet" href="index.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Teacher Signup!</title>
+<title>Student Signup!</title>
 </head>
 
 <body>
 <h1>Incognito</h1>
-<main> 
+<main class ="bg"> 
 
-<form style="border:1px solid #ccc">
+<form action = "StudentSU.jsp" method = "post">
   <div class="container">
-    <h2>Teacher Sign Up</h2>
+    <h2>Student Sign Up</h2>
     <h4>Please fill in this form to create an account.</h4>
-    
+    <label for="name"><b>Name</b></label>&nbsp&nbsp<b>(firstname Lastname)</b>
+    <input type = "text" placeholder ="Enter Full Name" id= "Name" required>
 
-    <label for="email"><b>Email</b></label>&nbsp&nbsp<b>(Please enter wayne state email address)</b>
+    <label for="email"><b>Email</b></label>&nbsp&nbsp<b>(Please enter Wayne State email address)</b>
     <input type="text" placeholder="Example@wayne.edu" name="email" required pattern = "(\W|^)[\w.+\-]*@wayne\.edu(\W|$)">
 <br><br>
     <label for="psw"><b>Password</b></label>
@@ -36,10 +35,8 @@
     
 
     <div class="clearfix">
-      <form method="get" action="/index">
-      <button type="button" class="cancelbtn" onclick="window.location.href = 'index.jsp';">Cancel</button>
-      <button type="submit" class="signupbtn" onclick="window.location.href = 'index.jsp';">Sign Up</button>
-   	  </form>
+      <button type="button" class="cancelbtn" onclick="window.location.href = 'index.html';">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>
