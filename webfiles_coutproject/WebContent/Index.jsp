@@ -11,7 +11,7 @@
 	<%@ page import="javax.sql.*"%>
 <%
 Class.forName("com.mysql.jdbc.Driver"); 
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cout", "root", "Sangeeta%1972"); 
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cOUT", "root", "23paddock");  
 Statement st= con.createStatement();
 String userid=request.getParameter("email"); 
 session.putValue("email",userid); 
