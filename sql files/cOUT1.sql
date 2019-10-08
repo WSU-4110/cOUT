@@ -26,10 +26,13 @@ CREATE TABLE students (
     COURSES VARCHAR(45),
     emailConfirmation boolean,
     password VARCHAR(15),
-    PRIMARY KEY(studentID),
-    CHECK(emailConfirmation IN (true, false))
+    PRIMARY KEY(studentID)
 );
+ALTER TABLE Teachers 
+MODIFY COLUMN emailConfirmation boolean DEFAULT false;
 
+ALTER TABLE students
+MODIFY COLUMN 
 INSERT INTO students(NAME, EMAIL, COURSES, emailConfirmation, password)
 values('Jane Doe', 'jane.doe@wayne.edu', 'CSC4111', true, 'pass1234');
 SELECT * FROM students;
