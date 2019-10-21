@@ -22,7 +22,6 @@
 
 <%
 String name = request.getParameter("Name");
-session.putValue("Name",name); 
 String pwd = request.getParameter("psw");  
 String EMAIL = request.getParameter("email"); 
 Class.forName("com.mysql.jdbc.Driver"); 
@@ -81,6 +80,7 @@ System.out.println("Registered");
 		catch (MessagingException e){
 			throw new RuntimeException(e);
 		}
+response.sendRedirect("index.html");
 %>
 
 
