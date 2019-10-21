@@ -2,14 +2,13 @@ CREATE DATABASE cOUT;
 
 USE cOUT; 
 
-CREATE TABLE Teachers (
-	teacherId INTEGER NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS Teachers (
 	NAME VARCHAR(25),
     EMAIL VARCHAR(30),
     COURSES VARCHAR(45),
     emailConfirmation boolean,
     password VARCHAR(15),
-    PRIMARY KEY (teacherId)
+    PRIMARY KEY (EMAIL)
 );
 
 INSERT INTO Teachers(NAME, EMAIL, COURSES, emailConfirmation, password)
@@ -19,22 +18,26 @@ SELECT * FROM Teachers;
 
 USE cOUT;
 
-CREATE TABLE students (
-	studentID INTEGER NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS students (
     NAME VARCHAR(25),
     EMAIL VARCHAR(30),
     COURSES VARCHAR(45),
     emailConfirmation boolean,
     password VARCHAR(15),
-    PRIMARY KEY(studentID)
+    PRIMARY KEY(Email)
 );
 ALTER TABLE Teachers 
 MODIFY COLUMN emailConfirmation boolean DEFAULT false;
 
 ALTER TABLE students
-MODIFY COLUMN 
+MODIFY COLUMN emailConfirmation boolean DEFAULT false;
+
 INSERT INTO students(NAME, EMAIL, COURSES, emailConfirmation, password)
 values('Jane Doe', 'jane.doe@wayne.edu', 'CSC4111', true, 'pass1234');
 SELECT * FROM students;
     
 SHOW Tables;
+
+
+
+
