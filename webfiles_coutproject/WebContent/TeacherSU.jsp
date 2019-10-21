@@ -10,7 +10,6 @@
 <%@ page import ="javax.sql.*" %>
 <%
 String name=request.getParameter("Name");
-session.putValue("Name",name); 
 String pwd=request.getParameter("psw");  
 String email=request.getParameter("email"); 
 Class.forName("com.mysql.jdbc.Driver"); 

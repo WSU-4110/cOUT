@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.sql.*"%>
+	<%@ page import="javax.sql.*"%>
+	  <%@include file = "Connection.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,27 +10,24 @@
 <title>Login page</title>
 </head>
 <body>
-	<%@ page import="java.sql.*"%>
-	<%@ page import="javax.sql.*"%>
+
 <%
-Class.forName("com.mysql.jdbc.Driver"); 
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cout", "root", "Sangeeta%1972"); 
-Statement st= con.createStatement();
-String userid=request.getParameter("email"); 
-session.putValue("email",userid); 
+
+String userid=request.getParameter("email");
+session.setAttribute("email",userid);
 String pwd=request.getParameter("psw"); 
 ResultSet rs=st.executeQuery("select * from students where EMAIL='"+userid+"'"); 
 if(rs.next()) 
 { 
 if(rs.getString(6).equals(pwd)) 
 { 
-String 	name = rs.getString(2);	
-out.println("welcome     "+ name); 
-
+String 	name = rs.getString(2);
+response.sendRedirect("studentDash.jsp");
 } 
 else 
 { 
-out.println("Invalid password try again"); 
+out.println("Invalid password try again");
+
 } 
 } 
 else 
