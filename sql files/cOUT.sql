@@ -8,7 +8,8 @@ CREATE TABLE Teachers (
     COURSES integer,
     emailConfirmation boolean DEFAULT false,
     password VARCHAR(15),
-    PRIMARY KEY (EMAIL)
+    PRIMARY KEY (EMAIL),
+    FOREIGN KEY (COURSES) references courses(AccessCode)
 );
 DROP TABLE Teachers;
 
