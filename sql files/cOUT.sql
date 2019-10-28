@@ -2,42 +2,49 @@ CREATE DATABASE cOUT;
 
 USE cOUT; 
 
-CREATE TABLE IF NOT EXISTS Teachers (
+CREATE TABLE Teachers (
 	NAME VARCHAR(25),
     EMAIL VARCHAR(30),
-    COURSES VARCHAR(45),
-    emailConfirmation boolean,
+    COURSES integer,
+    emailConfirmation boolean DEFAULT false,
     password VARCHAR(15),
-    PRIMARY KEY (EMAIL)
+    PRIMARY KEY (EMAIL),
+    FOREIGN KEY (COURSES) references courses(AccessCode)
 );
+DROP TABLE Teachers;
 
-INSERT INTO Teachers(NAME, EMAIL, COURSES, emailConfirmation, password)
-VALUES('John Smith', 'john.smith@wayne.edu', 'CSC 4110, CSC 4710' , true, '12fg678');
+ALTER TABLE Teachers ADD PRIMARY KEY(EMAIL);
 
-SELECT * FROM Teachers;
+DELETE from Teachers;
+ALTER TABLE Teachers
+MODIFY COLUMN COURSES integer;
 
-USE cOUT;
-
-CREATE TABLE IF NOT EXISTS students (
+CREATE TABLE Students (
     NAME VARCHAR(25),
     EMAIL VARCHAR(30),
-    COURSES VARCHAR(45),
-    emailConfirmation boolean,
+    COURSES integer,
+    emailConfirmation boolean DEFAULT false,
     password VARCHAR(15),
-    PRIMARY KEY(Email)
+    PRIMARY KEY(EMAIL),
+    FOREIGN KEY (COURSES) references courses(AccessCode)
 );
-ALTER TABLE Teachers 
-MODIFY COLUMN emailConfirmation boolean DEFAULT false;
 
-ALTER TABLE students
-MODIFY COLUMN emailConfirmation boolean DEFAULT false;
+INSERT INTO Students 
+VALUES ('Nuha Malik', 'n.and.m.26@gmail.com', 123458, 0 ,'randomm');
+INSERT INTO Students 
+VALUES ('Mario Bodier', 'mario@gmail.com', 123458, 0,'randomm');
 
-INSERT INTO students(NAME, EMAIL, COURSES, emailConfirmation, password)
-values('Jane Doe', 'jane.doe@wayne.edu', 'CSC4111', true, 'pass1234');
-SELECT * FROM students;
-    
-SHOW Tables;
+CREATE TABLE courses (
+	CrsId VARCHAR(8),
+    CrsName VARCHAR(25),
+    Professor VARCHAR(25),
+    AccessCode integer,
+    PRIMARY KEY(AccessCode)
+);
+INSERT INTO Courses
+VALUES('CSC 4710', 'Database', 'Corey Tessler', 123458);
 
+SELECT * FROM Students;
 
-
+/*SELECT * FROM students, Teachers WHERE userid = students.EMAIL OR userid = Teachers.EMAIL; */
 
