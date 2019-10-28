@@ -15,25 +15,92 @@
 <body>
 <jsp:include page="studentMessage.html"/><br><br>
 <%
-
-String userid =session.getAttribute("email").toString();
-ResultSet rs=st.executeQuery("select * from students where EMAIL='"+userid+"'");
-rs.next();
+	var getData = [];
+	var usersList = [];
+	
+	function status(response) {
+	//Check Promise
+	if (response.status >= 200 && response.status < 300) {
+	  return Promise.resolve(response)
+	} else {
+	  return Promise.reject(new Error(response.statusText))
+	}
+	}
+	
+	function json(response) {
+	//Return JSON format
+	return response.json()
+	}
+	
+	function getUsers(){
+	
+	fetch('https://jsonplaceholder.typicode.com/users')
+	.then(status)
+	.then(json)
+	.then(function(dataList) {
+	  usersList = dataList;    
+	  dataList.forEach(function(data){
+	    $('#selUser').append($('<option>', { 
+	      value: data.id,
+	      text : data.name 
+	  }));
+	    
+	  });
+	  getPosts("");
+	  
+	  
+	})
+	.catch(function(error) {
+	  console.log('Fetch User Error :-S', error);
+	});
+	
+	}
+	
+	function getPosts(option){
+	
+	fetch('https://jsonplaceholder.typicode.com/posts' + option)
+	.then(status)
+	.then(json)
+	.then(function(dataList) {
+	  getData = dataList;
+	  var divReply = $(".reply")
+	  divReply.empty();
+	  
+	  dataList.forEach(function(data){
+	    var post = $('<p class="post"/>');
+	    
+	    var divID = $('<div class="userName"/>').append($('<span>').append('By: ', usersList[data.userId - 1].name));    
+	    var divTitle = $('<div class="title"/>').append(data.title);
+	    var divBody = $('<div class="body"/>').append(data.body)
+	    
+	    divReply.append(post.append(divID,divTitle,divBody));
+	    
+	  });
+	  
+	})
+	.catch(function(error) {
+	  console.log('Fetch Post Error :-S', error);
+	});
+	}
+	
+	
+	
+	$(document).ready(function() {
+	//Get Post On Document Ready
+	getUsers();
+	})
+	
+	function searchUser(){
+	var userSelected = $('#selUser').val();
+	
+	if (userSelected != 0){
+	  getPosts("?userId=" + userSelected);
+	}
+	else{
+	  getPosts("");
+	}
+	}
 %>
-<div class="container">
-  <div class="card border-0 shadow my-5">
-    <div class="card-body p-5">
-      <h1 class="font-weight-light">Welcome <%=rs.getString(2)%></h1>
-      <hr>
-      <button type="button" class="btn btn-primary btn-lg">Nudge</button>
-      <button type="button" class="btn btn-delete btn-lg">Delete</button>
-      
-      <p class="lead">Scroll down...</p>
-      <div style="height: 700px"></div>
-      <p class="lead mb-0">You've reached the end!</p>
-    </div>
-  </div>
-</div>
+</BODY>
+</HTML>
 
-</body>
-</html>

@@ -2,10 +2,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-
-
-  <!-- Theme CSS - Includes Bootstrap -->
-  <link href="css/creative.min.css" rel="stylesheet">
+ <!-- Theme CSS - Includes Bootstrap -->
+  <link href="css/studentMessage.css" rel="stylesheet">
 <style>
 body {
   background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
@@ -15,9 +13,22 @@ body {
   -o-background-size: cover;
 }
 </style>
-<title>Student Message Board</title>
+
+<link href="css/creative.min.css" rel="stylesheet">
+<style>
+body {
+  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+</style>
+
+
+<title>Message Board</title>
 </head>
-<body >
+<body>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
@@ -32,8 +43,9 @@ body {
                 <span class="sr-only">(current)</span>
               </a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="index.html">Sign Out</a>
+          <a class="nav-link" href="#">Sign Out</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -43,68 +55,68 @@ body {
   </div>
 </nav>
 
-<!------------container------->
-
+<!-- Page Content -->
 <div class="container">
-
-<h1>COMMENT BOX</h1>
-<!-------Wrap------------>
-<div id="wrap">
-<div id="main">
-<div class="row">
-<div class="col-md-5">
-<h3 class="heading">Comments and Responses</h3>
-</div>
-<div class="col-md-7">
-<div id="upper_blank"></div>
-</div>
-</div>
-</div>
-
-<p>Your email address will not be published. Required fields are marked *</p>
-
-<!------------Form Start---------->
-
-<div id='form'>
-<div class="row">
-<div class="col-md-12">
-
-<form action="" method="POST" id="commentform">
-
-<div id="comment-message" class="form-row">
-<textarea name = "comment" placeholder = "Message" id = "comment" ></textarea>
-</div>
-<a href="#"><input type="submit" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
-<input style="width: 30px" type="checkbox" value="1" name="subscribe" id="subscribe" checked="checked">
-<p1><b>Notify me when new comments are added.</b></p1>
-</form>
-
-</div>
-</div>
-</div>
-</div>
-
-<!-------------------Reply Section------->
-<div id="second">
-<div class="row">
-<div class="col-md-2">
-<h3 class="second_heading"><b>Leave a Reply</b></h3>
-</div>
-<div class="col-md-10">
-<div class="blank"></div>
-</div>
-</div>
-</div>
-<div id="middle">
-<form>
-<a href="#"><input type = "text" value = "reply" name = "dreply" id = "inner_reply"></a>
-</form>
-
-<button type="button" class="btn btn-primary btn-lg">Nudge</button>
-<button type="button" class="btn btn-danger btn-lg">Delete</button>
-
-</div>
-
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light">Student Messaging Board</h1>
+      <hr>
+      <div class="split left">
+  		<div class="centered">
+    		<h2 class = "font-weight-light">Message Board</h2>
+    		<p>Display of questions that have already been asked by students</p>
+    		
+    		
+    		
+    		
+    		
+    		
+				<table class="table table-bordered table-striped">
+					<caption>Messages</caption>
+					<thead>
+						<tr>
+							<th>
+								Username
+							</th>
+							<th>
+								Message
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="2">No messages</td>
+						</tr>
+					</tbody>
+				</table>
+			
+			<div class="row-fluid">
+				<form id="new-user">
+					<input type="text" name="message" placeholder="Message" />
+					<a id="Submit" class="btn btn-primary">SEND</a>
+				</form>		
+			</div>
+		
+		
+		
+		
+  		</div>
+	</div>
+	
+      <div class="split right">
+  		<div class="centered">
+	    <h2 class = "font-weight-light">Unanswered Questions:</h2>
+	    <p>Display of questions that still need to be answered</p>
+	   <button type="button" class="btn btn-primary btn-lg" float="right">Nudge</button>
+	    <button type="button" class="btn btn-danger btn-lg" float="right">Delete</button>
+  		</div>
+	</div>
+      
+      
+      <div style="height: 700px"></div>
+      <p class="lead mb-0">You've reached the end!</p>
+    </div>
+  </div>
 </div>
 </body>
 </html>
