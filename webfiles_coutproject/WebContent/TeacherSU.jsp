@@ -8,13 +8,11 @@
 <body>
 <%@ page import ="java.sql.*" %>
 <%@ page import ="javax.sql.*" %>
+	  <%@include file = "Connection.jsp" %>
 <%
 String name=request.getParameter("Name");
 String pwd=request.getParameter("psw");  
 String email=request.getParameter("email"); 
-Class.forName("com.mysql.jdbc.Driver"); 
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cout","root","23paddock");
-Statement st= con.createStatement(); 
 ResultSet rs; 
 int i=st.executeUpdate("insert into Teachers(Name,password,email)values('"+name+"','"+pwd+"','"+email+"')"); 
 

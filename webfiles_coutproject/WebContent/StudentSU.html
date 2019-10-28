@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>	
-<link rel="stylesheet" href="index.css">
+<head>
+<meta charset="ISO-8859-1">
+<link href="signup.css" rel="stylesheet" type="text/css">
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Student Signup!</title>
+<link href="css/creative.min.css" rel="stylesheet">
+
+<title>Register</title>
 </head>
-
 <body>
-<h1>Incognito</h1>
-<main class ="bg"> 
-
-<form action = "StudentSU.jsp" method = "post">
   <div class="container">
-    <h2>Student Sign Up</h2>
-    <h4>Please fill in this form to create an account.</h4>
-    <label for="name"><b>Name</b></label>&nbsp&nbsp<b>(firstname Lastname)</b>
-    <input type = "text" placeholder ="Enter Full Name" id= "Name" name="Name" required>
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+             <!-- Background image for card set in CSS! -->
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">Student Sign-Up</h5>
+            <form class="form-signin" action= "StudentSU.jsp" method = "post">
+              <div class="form-label-group">
+                <input type="text" id="inputUserame" name="Name" class="form-control" placeholder="Full Name" required autofocus>
+                <label for="inputName">Full Name</label>
+              </div>
 
-    <label for="email"><b>Email</b></label>&nbsp&nbsp<b>(Please enter Wayne State email address)</b>
-    <input type="text" placeholder="Example@wayne.edu" name="email" id="email" required pattern = "(\W|^)[\w.+\-]*@wayne\.edu(\W|$)">
-<br><br>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id = "password" name="psw" required>
-<br><br>
-    <label for="psw-repeat"><b>Repeat Password</b></label>&nbsp<span id='message'> </span>
-    <input type="password" placeholder="Repeat Password" id = "confirm_password" name="psw-repeat" required onkeyup='check();'>
-  <br>  <br>
-    <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">By checking you agree to our
-      <a href="#" style="color:dodgerblue">Terms & Privacy</a>
-    </label>
-    <br><br>
-    
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required pattern = "(\W|^)[\w.+\-]*@wayne\.edu(\W|$)">
+                <label for="inputEmail">Email address</label>
+              </div>
+              
+              <hr>
 
-    <div class="clearfix">
-      <button type="button" class="cancelbtn" onclick="window.location.href = 'index.html';">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" name="psw" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+              
+              <div class="form-label-group">
+                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required onkeyup='check();'>
+                <label for="inputConfirmPassword">Confirm password</label><span id='message'>&nbsp</span>
+              </div>
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+              <a class="d-block text-center mt-2 small" href="index.html">Sign In</a>
+              
+             
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</form>
-
-
-
-</main>
-<script>
+  
+  <script>
 var check = function() {
-	  if (document.getElementById('password').value ==
-	    document.getElementById('confirm_password').value) {
+	  if (document.getElementById('inputPassword').value ==
+	    document.getElementById('inputConnfirmPassword').value) {
 	    document.getElementById('message').style.color = 'green';
 	    document.getElementById('message').innerHTML = '<font size="35"> &#10004 </font>';
 	  } else 
