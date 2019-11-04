@@ -3,14 +3,41 @@
 <head>
 <meta charset="ISO-8859-1">
  <!-- Theme CSS - Includes Bootstrap -->
-  <link href="css/teacherMsgBoard.css" rel="stylesheet">
+<link href="css/creative.min.css" rel="stylesheet">
 <style>
 body {
-  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  background: url('http://www.designlovefest.com/wp-content/uploads/downloads/2018/01/000_647011.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+}
+ /* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  z-index: 1;
+  top: 0;
+  position: absolute;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+/* Control the left side */
+.left {
+  left: 0;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+}
+/* If you want the content centered horizontally and vertically */
+.centered {
+	position: absolute;
+  top: 20%;
+  left: 15%;
+  transform: translate(-50%, -50%,);
+  text-align: center;
 }
 </style>
 <title>Message Board</title>
@@ -36,6 +63,11 @@ body {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
+        </li>
+	 <li class="nav-item">
+        <a href="index.html" class="btn btn-info btn-logout">
+          Log out
+        </a>
         </li>
       </ul>
     </div>
