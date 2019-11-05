@@ -18,8 +18,23 @@ Statement st= con.createStatement();
 ResultSet rs; 
 int i=st.executeUpdate("insert into Teachers(Name,password,email)values('"+name+"','"+pwd+"','"+email+"')"); 
 
-out.println("Registered"); 
+String sqlT = "select * from Teachers where EMAIL='"+email+"'";
 
+if (st.execute(sqlT))
+{
+	ResultSet sa=st.executeQuery("select * from Teachers where EMAIL='"+email+"'");
+	if(sa.next())
+	{
+		if(!sa.getString(3).equals(email)) 
+		{ 
+			out.println("Registered");
+		}
+		else
+		{ 
+			response.sendRedirect("emailRegistered.jsp");
+		} 
+	}
+}
 
 %>
 </body>
