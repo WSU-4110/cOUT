@@ -61,15 +61,5 @@ pageEncoding="ISO-8859-1"%>
 
   <!-- Custom scripts for this template -->
   <script src="js/creative.min.js"></script>
-
-
-
-
-
-
-
-
-
 </body>
 </html>
-
