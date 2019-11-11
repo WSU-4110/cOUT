@@ -12,25 +12,48 @@
 <body>
 
 <%
-
+String UserID = request.getParameter("user");
 String userid=request.getParameter("email");
 session.setAttribute("email",userid);
-String pwd=request.getParameter("psw"); 
-ResultSet rs=st.executeQuery("select * from students where EMAIL='"+userid+"'"); 
-if(rs.next()) 
-{ 
-if(rs.getString(6).equals(pwd)) 
-{ 
-String 	name = rs.getString(2);
-response.sendRedirect("studentDash.jsp");
-} 
+String pwd=request.getParameter("psw");
+String sqlT = "select * from teachers where EMAIL='"+userid+"'";
+String sqlS = "select * from students where EMAIL='"+userid+"'";
+if (st.execute(sqlS))
+{
+ResultSet sa=st.executeQuery("select * from students where EMAIL='"+userid+"'");
+if(sa.next())
+{
+	if(sa.getString(6).equals(pwd)) 
+	{ 
+	response.sendRedirect("studentDash.jsp");
+	}
+	else
+	{ 
+	out.println("Invalid password try again");
+	} 
+}
+else if(st.execute(sqlT))
+{
+	ResultSet ta=st.executeQuery("select * from teachers where EMAIL='"+userid+"'");
+	if(ta.next())
+	{
+		if(ta.getString(6).equals(pwd)) 
+		{ 
+		response.sendRedirect("TeacherDash.jsp");
+		}
+		else
+		{ 
+		out.println("Invalid password try again");
+		} 
+	}
+	
+}
 else 
-{ 
-out.println("Invalid password try again");
-
-} 
-} 
-else 
+{
+out.println("wrong username or Password");
+response.sendRedirect("index.html");
+}
+}
 %>
 </body>
 </html>

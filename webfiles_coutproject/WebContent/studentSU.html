@@ -18,14 +18,13 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Student Sign-Up</h5>
-            <form class="form-signin" action= "studentSU.jsp" method = "post">
+            <form class="form-signin" action= "StudentSU.jsp" method = "post">
               <div class="form-label-group">
                 <input type="text" id="inputUserame" name="Name" class="form-control" placeholder="Full Name" required autofocus>
-                <label for="inputName">Full Name</label>
               </div>
 
               <div class="form-label-group">
-                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required pattern = "(\W|^)[\w.+\-]*@wayne\.edu(\W|$)">
                 <label for="inputEmail">Email address</label>
               </div>
               
@@ -38,7 +37,7 @@
               
               <div class="form-label-group">
                 <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required onkeyup='check();'>
-                <label for="inputConfirmPassword">Confirm password</label>
+                <label for="inputConfirmPassword">Confirm password</label><span id='message'>&nbsp</span>
               </div>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
@@ -54,7 +53,7 @@
   
   <script>
 var check = function() {
-	  if (document.getElementById('password').value ==
+	  if (document.getElementById('inputPassword').value ==
 	    document.getElementById('inputConnfirmPassword').value) {
 	    document.getElementById('message').style.color = 'green';
 	    document.getElementById('message').innerHTML = '<font size="35"> &#10004 </font>';

@@ -29,25 +29,7 @@ java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33
 Statement st = con.createStatement(); 
 ResultSet rs; 
 int i = st.executeUpdate("insert into students(Name,password,email)values('" + name + "','" + pwd + "','" + EMAIL + "')"); 
-
-String sqlS = "select * from students where EMAIL='"+EMAIL+"'";
-
-if (st.execute(sqlS))
-{
-	ResultSet sa=st.executeQuery("select * from students where EMAIL='"+EMAIL+"'");
-	if(sa.next())
-	{
-		if(!sa.getString(3).equals(EMAIL)) 
-		{ 
-			out.println("Registered");
-		}
-		else
-		{ 
-			response.sendRedirect("emailRegistered.jsp");
-		} 
-	}
-}
-
+System.out.println("Registered"); 
 //recipients email address will be replaced using database attributes
 		
 		//the email address that will appear as sender ( will be replaced with a donotreply email) 
