@@ -29,7 +29,7 @@ public class teachers implements classes {
 	
 public class students implements classes {
 	
-	public void addOrJoinClass(String randint, String name) throws ClassNotFoundException, SQLException{
+	public int addOrJoinClass(String randint, String name) throws ClassNotFoundException, SQLException{
 		System.out.println("Join Class");
 		String sqt = "select * from courses where AccessCode='"+randint+"'";
 		Class.forName("com.mysql.jdbc.Driver"); 
@@ -45,7 +45,7 @@ public class students implements classes {
 		String sqt2 = "insert into Link_Courses(Student_Email, Courses_ID) values ('"+email+"', '"+randint+"')";
 		int fa=st.executeUpdate(sqt2);
 		}
-	
+	return 1;
 	}
 }
 public class classesFactory {
