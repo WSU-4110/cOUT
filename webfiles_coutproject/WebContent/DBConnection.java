@@ -49,7 +49,7 @@ Statement st= con.createStatement();
 		return st;
 	}
 
-	public static DbManager getInstance() throws SQLException {
+	public static DBConnection getInstance() throws SQLException {
 		if (instance == null) {
 			instance = new DbManager();
 		} 
