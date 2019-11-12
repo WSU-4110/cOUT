@@ -15,9 +15,11 @@ String Classname =request.getParameter("ClassName");
 String name = session.getAttribute("name").toString();
 
 <%--implementing Factory Method--%>
+classesFactory classesFactory = new classesFactory();
 classes class1 = classesFactory.getUserType("TEACHERS");
-class1.doWithClass();
-int AccessCode = first.AddClass(CourseID, Classname, name); 
+int AccessCode = class1.addOrJoinClass(CourseID, Classname, name);
+<%--end of code regarding Factory Method --%>
+	
 session.setAttribute("AccessCode", AccessCode);
 %>
 <div class = "container">
