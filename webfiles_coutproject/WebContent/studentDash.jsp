@@ -11,6 +11,7 @@
 <link href= "index.css" rel= "stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Student Dashboard</title>
+<%@ page import="classes.classesFactory"%>
 </head>
 <body>
 <jsp:include page="studentDash.html"/><br><br>
