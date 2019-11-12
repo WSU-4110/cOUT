@@ -13,7 +13,10 @@
 String CourseID =request.getParameter("CourseID");
 String Classname =request.getParameter("ClassName");
 String name = session.getAttribute("name").toString();
-Classes first = new Classes();
+
+<%--implementing Factory Method--%>
+classes class1 = classesFactory.getUserType("TEACHERS");
+class1.doWithClass();
 int AccessCode = first.AddClass(CourseID, Classname, name); 
 session.setAttribute("AccessCode", AccessCode);
 %>
