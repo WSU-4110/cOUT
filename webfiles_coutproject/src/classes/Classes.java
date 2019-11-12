@@ -2,8 +2,12 @@ package classes;
 import java.util.Random;
 import java.sql.SQLException;
 import java.sql.*;
-public class Classes {
-	
+//Changed Design Pattern to Factory Method
+public interface classes {
+	public int doWithClass();
+}
+public class teachers implements classes {
+	public int doWithClass() {
 	public int AddClass(String CourseID, String Classname, String name) throws ClassNotFoundException, SQLException {
 	Random rand = new Random();
 	int randint = rand.nextInt(100000);
@@ -20,9 +24,11 @@ public class Classes {
 	int fa=st.executeUpdate(sqt);
 	return randint;
 	}
+	}
+}
 	
-	
-	
+public class students implements classes {
+	public int doWithClass () {
 	public void JoinClass(String randint, String name) throws ClassNotFoundException, SQLException{
 		
 		String sqt = "select * from courses where AccessCode='"+randint+"'";
@@ -40,5 +46,18 @@ public class Classes {
 		int fa=st.executeUpdate(sqt2);
 		}
 	
+	}
+	}
+}
+public class classesFactory {
+	
+	public classes getUserType (String userType){
+		if (userType == null)
+			return null;
+		else if (userType.equalsIgnoreCase("TEACHERS"))
+			return new teachers();
+		else if (userType.equalsIgnoreCase("STUDENTS"))
+			return new students();
+		return null;
 	}
 }
