@@ -12,8 +12,13 @@
   <%
 String AccessCode =request.getParameter("AccessCode");
 String name = session.getAttribute("name").toString();
-Classes first = new Classes();
-first.JoinClass(AccessCode, name); 
+
+<%--Implementing Factory Method--%>
+classesFactory classesFactory = new classesFactory();
+classes class1 = classesFactory.getUserType("STUDENTS");
+int rand = class1.addOrJoinClass(AccessCode, name);
+<%--end of code regarding Factory Method --%>
+
 %>
 <div class = "container">
 <div id = "myModal2" >
