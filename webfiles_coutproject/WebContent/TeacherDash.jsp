@@ -35,6 +35,22 @@ String name = rs.getString(2);
 session.setAttribute("name",name);
 
 %>
+	
+ var addClass = {
+	title = "Add	 Class";
+	className = "Class Name:";
+	courseNumber = "CourseNumber:";
+	getTitle: function(){
+		return title;
+	}
+       getClassName: function(){
+            return className;
+        },
+        getCourseNumber: function(){
+            return courseNumber;
+        }
+    }
+	
 <div class="container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
@@ -46,14 +62,14 @@ session.setAttribute("name",name);
       <div class = "modal-content">
       <form action= "AddCLass.jsp" method = "get">
      	<div class= "modal-header">
-     	<h4 class = "modal-title">Add	 Class</h4>
+	<h4 class = "modal-title"><script type="text/javascript">addClass.getTitle();</script></h4>
      	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
      	</div>
      	<div class = "modal-body">
-     	<h5>Course Number:</h5><input type="text" class="form-control" name="ClassName" placeholder="Enter Class name" required >
+	<h5><script type="text/javascript">addClass.getClassName();</script></h5><input type="text" class="form-control" name="ClassName" placeholder="Enter Class name" required >
      	</div>
      	<div class = "modal-body">
-     	<h5>Class Name:</h5><input type="text" class="form-control" name="CourseID" placeholder="Enter Class name" required >
+     	<h5><script type="text/javascript">addClass.getCourseNumber();</script></h5><input type="text" class="form-control" name="CourseID" placeholder="Enter Class name" required >
      	</div>
      	<div class="form-group">
 		<button type="submit" class="btn btn-primary btn-xl" class="trigger-btn" style="float: right;">Submit</button>
