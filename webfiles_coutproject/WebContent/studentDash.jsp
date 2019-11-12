@@ -23,6 +23,18 @@ String name = rs.getString(2);
 session.setAttribute("name",name);
 
 %>
+	
+var joinClass = {
+	title = "Join Class";
+	accessCode = "Access Code";
+	
+	getTitle: function(){
+		return title;
+	},
+       getAccessCode: function(){
+            return accessCode;
+        }
+    }
 <div class="container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
@@ -34,11 +46,11 @@ session.setAttribute("name",name);
       <div class = "modal-content">
       <form action= "JoinCLass.jsp" method = "get">
      	<div class= "modal-header">
-     	<h4 class = "modal-title">Join Class</h4>
+	<h4 class = "modal-title"><script type="text/javascript">joinClass.getTitle();</script></h4>
      	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
      	</div>
      	<div class = "modal-body">
-     	<h5>Access Code</h5><input type="text" class="form-control" name="AccessCode" placeholder="Enter Access Code" required>
+     	<h5><script type="text/javascript">joinClass.getAccessCode();</script></h5><input type="text" class="form-control" name="AccessCode" placeholder="Enter Access Code" required>
      	</div>
      	<div class="form-group">
 		<button type="submit" class="btn btn-primary btn-xl js-scroll-trigger" style="float: right;">Submit</button>
