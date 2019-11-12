@@ -22,7 +22,7 @@
 
 
 
-<%@ page import="classes.Classes"%>
+<%@ page import="classes.classesFactory"%>
 </head>
 <body>
 <jsp:include page="TeacherDash.html"/>
