@@ -4,11 +4,12 @@ import java.sql.SQLException;
 import java.sql.*;
 //Changed Design Pattern to Factory Method
 public interface classes {
-	public int doWithClass();
+	public int addOrJoinClass();
 }
 public class teachers implements classes {
-	public int doWithClass() {
-	public int AddClass(String CourseID, String Classname, String name) throws ClassNotFoundException, SQLException {
+	
+	public int addOrJoinClass(String CourseID, String Classname, String name) throws ClassNotFoundException, SQLException {
+		System.out.println("Add Class");
 	Random rand = new Random();
 	int randint = rand.nextInt(100000);
 	Class.forName("com.mysql.jdbc.Driver"); 
@@ -24,13 +25,12 @@ public class teachers implements classes {
 	int fa=st.executeUpdate(sqt);
 	return randint;
 	}
-	}
 }
 	
 public class students implements classes {
-	public int doWithClass () {
-	public void JoinClass(String randint, String name) throws ClassNotFoundException, SQLException{
-		
+	
+	public void addOrJoinClass(String randint, String name) throws ClassNotFoundException, SQLException{
+		System.out.println("Join Class");
 		String sqt = "select * from courses where AccessCode='"+randint+"'";
 		Class.forName("com.mysql.jdbc.Driver"); 
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cout", "root", "Sangeeta%1972"); 
@@ -46,7 +46,6 @@ public class students implements classes {
 		int fa=st.executeUpdate(sqt2);
 		}
 	
-	}
 	}
 }
 public class classesFactory {
