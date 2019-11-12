@@ -40,9 +40,10 @@ session.setAttribute("name",name);
 	title = "Add	 Class";
 	className = "Class Name:";
 	courseNumber = "CourseNumber:";
+	
 	getTitle: function(){
 		return title;
-	}
+	},
        getClassName: function(){
             return className;
         },
