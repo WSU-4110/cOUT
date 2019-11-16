@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ page isELIgnored="false" %>
 <meta charset="ISO-8859-1">
  <!-- Theme CSS - Includes Bootstrap -->
 <link href="css/creative.min.css" rel="stylesheet">
@@ -35,7 +36,7 @@ body {
 }
 /* If you want the content centered horizontally and vertically */
 .centered {
-	position: absolute;
+  position: absolute;
   top: 20%;
   left: 15%;
   transform: translate(-50%, -50%,);
@@ -86,6 +87,22 @@ body {
   		<div class="centered">
     		<h2 class = "font-weight-light">Answered Questions:</h2>
     		<p>Display of questions that have already been answered by Teacher</p>
+   <c:if test="${not empty question}">
+   
+    <table>
+        <c:forEach var="o" items="${question}">
+        <c:if test="${o.is_answered == true}">
+            <tr>
+                <td position:absolute>
+                <div class="btn question-primary btn-lg" >
+                	${o.QUESTION}
+        </c:if>
+ 		<div>
+ 	   </div>
+        </c:forEach>
+    </table>
+
+</c:if>
   		</div>
 	</div>
 	
@@ -94,20 +111,40 @@ body {
 	    <h2 class = "font-weight-light">Unanswered Questions:</h2>
 	    <p>Display of questions that still need to be answered</p>
 	    	<table border="1" cellpadding="2" cellspacing="2">
-		<tr>
-			<th>ID</th>
-			<th>Question</th>
+		<div>
+			<c:if test="${not empty question}">
+    <table>
+        <c:forEach var="o" items="${question}">
+        <c:if test="${o.is_answered == false}">
+            <tr>
+                <td position:absolute>
+                <div class="btn question-primary btn-lg" >
+                	${o.QUESTION}
+               
+ <div>
+ <form id="form1" method="post" action="/TeacherDashClicked">
+  <textarea name="comment">
+    Enter your comment here
+  </textarea>
+</form>
+ </div>
+     <div>
+                 <button position:relative type="button" class="btn btn-primary btn-lg" float="right" type="submit" >Answer</button>
+	    		 <button position:relative type="button" class="btn btn-primary btn-lg" float="right">Delete</button>
+                </div>
+                </div>
+ </c:if>
+            
+                </td>
+            </tr>
+           
+        </c:forEach>
+    </table>
+</c:if>
 
-		</tr>
-		<c:forEach var="question" items="${questions}">
-			<tr>
-				<td>${question.ID }</td>
-				<td>${question.QUESTION }</td>
-			</tr>
-		</c:forEach>
+		</div>
 	</table>
-	   <button type="button" class="btn btn-primary btn-lg" float="right">Answer</button>
-	    <button type="button" class="btn btn-primary btn-lg" float="right">Delete</button>
+	  
   		</div>
 	</div>
       
