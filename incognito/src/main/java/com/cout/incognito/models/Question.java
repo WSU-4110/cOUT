@@ -21,31 +21,53 @@ public class Question {
 	private int ID;
 	@Column(name="QUESTION")
 	private String QUESTION;
+	@Column(name="isAnswered")
+	private boolean is_answered;
 	
 	public Question(){
 		
 	}
-	public Question(int iD, String question) {
+	
+	public Question(int iD, String qUESTION, boolean is_answered) {
 		super();
 		ID = iD;
-		QUESTION = question;
+		QUESTION = qUESTION;
+		this.is_answered = is_answered;
 	}
-	
+
 	public int getID() {
 		return ID;
 	}
+	
 	public void setID(int iD) {
 		ID = iD;
 	}
+	
 	public String getQUESTION() {
 		return QUESTION;
 	}
+	
 	public void setQUESTION(String question) {
 		QUESTION = question;
 	}
+
+	public boolean isIs_answered() {
+		return is_answered;
+	}
+
+
+	public void setIs_answered(boolean is_answered) {
+		this.is_answered = is_answered;
+	}
+
 	@Override
 	public String toString() {
-		return "Question [ID=" + ID + ", QUESTION=" + QUESTION + "]";
+		return "Question [ID=" + ID + ", QUESTION=" + QUESTION + ", is_answered=" + is_answered + "]";
 	}
+	
+
+
+	
+
 	
 }

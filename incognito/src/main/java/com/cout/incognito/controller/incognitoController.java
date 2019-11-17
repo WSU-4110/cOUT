@@ -4,34 +4,29 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cout.incognito.models.studentConfirmationToken;
-import com.cout.incognito.models.teacherConfirmationToken;
-import com.cout.incognito.models.Question;
 import com.cout.incognito.models.Student;
 import com.cout.incognito.models.Teacher;
+import com.cout.incognito.models.studentConfirmationToken;
+import com.cout.incognito.models.teacherConfirmationToken;
 import com.cout.incognito.repository.studentConfirmationTokenRepo;
 import com.cout.incognito.repository.studentRepo;
 import com.cout.incognito.repository.teacherConfirmationTokenRepo;
 import com.cout.incognito.repository.teacherRepo;
-import com.cout.incognito.services.QuestionServiceImpl;
 
 
 @Controller 
 public class incognitoController {
-	@Autowired
-	private Question question;
-	@Autowired 
-	private QuestionServiceImpl questionService;
+	
 	@Autowired
 	private studentConfirmationTokenRepo studentConfirmationTokenRepository;
+	
 	@Autowired
 	private teacherConfirmationTokenRepo teacherConfirmationTokenRepository;
+	
 	@Autowired
 	private studentRepo studentRepository;
 	
@@ -87,9 +82,6 @@ public class incognitoController {
 	    }
 
 	}
-
-
-		
 
 
 	

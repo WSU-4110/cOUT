@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="teachers")
-public class Teacher implements UserRole{
+																																																																		public class Teacher implements UserRole{
 	
 	@Override
 	public String role() {

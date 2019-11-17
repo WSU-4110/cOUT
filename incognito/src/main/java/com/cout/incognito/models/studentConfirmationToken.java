@@ -17,9 +17,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class studentConfirmationToken {
 	
-		public studentConfirmationToken(){
-			
-		}
+
 
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +32,12 @@ public class studentConfirmationToken {
 	    @OneToOne(targetEntity = Student.class, fetch = FetchType.EAGER)
 	    @JoinColumn(nullable = false, name = "student_id")
 	    private Student student;
-
+	    
+	    
+		public studentConfirmationToken(){
+			
+		}
+		
 	    public studentConfirmationToken(Student student) {
 	        this.student = student;
 	        createdDate = new Date();
