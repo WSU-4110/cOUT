@@ -87,16 +87,16 @@ body {
   		<div class="centered">
     		<h2 class = "font-weight-light">Answered Questions:</h2>
     		<p>Display of questions that have already been answered by Teacher</p>
-   <c:if test="${not empty question}">
+   <c:if test="${not empty answer}">
    
     <table>
-        <c:forEach var="o" items="${question}">
-        <c:if test="${o.is_answered == true}">
+        <c:forEach var="o" items="${answer}">
+
             <tr>
                 <td position:absolute>
                 <div class="btn question-primary btn-lg" >
-                	${o.QUESTION}
-        </c:if>
+                	${o.ANSWER}
+
  		<div>
  	   </div>
         </c:forEach>
@@ -110,9 +110,9 @@ body {
   		<div class="centered">
 	    <h2 class = "font-weight-light">Unanswered Questions:</h2>
 	    <p>Display of questions that still need to be answered</p>
+	    <div>
 	    	<table border="1" cellpadding="2" cellspacing="2">
-		<div>
-			<c:if test="${not empty question}">
+<c:if test="${not empty question}">
     <table>
         <c:forEach var="o" items="${question}">
         <c:if test="${o.is_answered == false}">
@@ -120,31 +120,25 @@ body {
                 <td position:absolute>
                 <div class="btn question-primary btn-lg" >
                 	${o.QUESTION}
-               
- <div>
- <form id="form1" method="post" action="/TeacherDashClicked">
-  <textarea name="comment">
-    Enter your comment here
-  </textarea>
-</form>
- </div>
-     <div>
-                 <button position:relative type="button" class="btn btn-primary btn-lg" float="right" type="submit" >Answer</button>
-	    		 <button position:relative type="button" class="btn btn-primary btn-lg" float="right">Delete</button>
                 </div>
-                </div>
- </c:if>
-            
-                </td>
+	       <button type="button" class="btn btn-sm"  data-toggle="collapse" data-target="#form1" aria-controls="form1" aria-expanded="false" aria-label="Toggle navigation" >
+ 				<span class="navbar-toggler-icon"></span>
+ 				Button Collapse
+ 				</button>
+
+		      </td>
             </tr>
-           
+
+ 		</c:if>
         </c:forEach>
     </table>
 </c:if>
 
-		</div>
+
 	</table>
-	  
+	
+
+</div>
   		</div>
 	</div>
       
