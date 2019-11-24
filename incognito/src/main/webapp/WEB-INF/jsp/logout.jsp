@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Logout</title>
 
-    <!-- Font Awesome Icons -->
+  <!-- Font Awesome Icons -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Google Fonts -->
@@ -18,17 +19,13 @@ pageEncoding="ISO-8859-1"%>
 
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="css/creative.min.css" rel="stylesheet">
+  
+  <!-- login pop window  -->
+<link href= "css/index.css" rel= "stylesheet">
+
 </head>
+
 <body>
-
-<% session.invalidate();
-%>
-
-  <script>
-        var timer = setTimeout(function() {
-            window.location='index.html'
-        }, 5000);
-    </script>
 
   <!-- Contact Section -->
   <section class="page-section" id="contact">
@@ -45,12 +42,13 @@ pageEncoding="ISO-8859-1"%>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-light py-5">
+  <footer class="footer bg-light py-5 footer">
     <div class="container">
       <div class="small text-center text-muted">Copyright &copy; 2019 - cOUT</div>
     </div>
   </footer>
 
+</body>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -62,15 +60,12 @@ pageEncoding="ISO-8859-1"%>
   <!-- Custom scripts for this template -->
   <script src="js/creative.min.js"></script>
 
+  <script>
+        var timer = setTimeout(function() {
+            window.location='/'
+        }, 3000);
+    </script>
 
-
-
-
-
-
-
-
-</body>
 </html>
 
 

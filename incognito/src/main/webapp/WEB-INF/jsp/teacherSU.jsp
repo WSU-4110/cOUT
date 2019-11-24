@@ -20,9 +20,9 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Teacher Sign-Up</h5>
-            <form class="form-signin" method = "post" action="/teacher/registered">
-            <input type="hidden" name="id" value= value="${Teacher.ID}">
-            <input type="hidden" name="role">
+            <form class="form-signin" method = "post" action="/registered-teacher">
+            <input type="hidden" name="id" value="${Teacher.ID}">
+            <input type="hidden" name="role" value="teacher">
               <div class="form-label-group">
               <label for="Name">Full Name</label>
                <input type="text" value="${Teacher.NAME}" name="NAME" class="form-control" placeholder="Full Name" required autofocus>
@@ -31,7 +31,7 @@
 
               <div class="form-label-group">
               <label for="inputEmail">Email address</label>
-              <input  value="${Teacher.EMAIL}" type="email" name="EMAIL" class="form-control" placeholder="Email address" required>
+              <input  type="email" name="EMAIL" class="form-control" placeholder="Email address" required>
                 
               </div>
               
@@ -48,7 +48,7 @@
               </div>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-              <a class="d-block text-center mt-2 small" href="index.html">Sign In</a>
+         
               
              
             </form>

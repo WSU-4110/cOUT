@@ -14,6 +14,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public class studentConfirmationToken {
 	

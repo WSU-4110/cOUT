@@ -10,7 +10,6 @@
 <link href="css/creative.min.css" rel="stylesheet">
 <style>
 body {
-  background: url('http://www.designlovefest.com/wp-content/uploads/downloads/2018/01/000_647011.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -79,7 +78,7 @@ body {
 
 <!-- Page Content -->
 <div class="container">
-  <div class="card border-0 shadow my-5">
+  <div class="card ">
     <div class="card-body p-5">
       <h1 class="font-weight-light">Teacher Messaging Board</h1>
       <hr>
@@ -95,8 +94,7 @@ body {
             <tr>
                 <td position:absolute>
                 <div class="btn question-primary btn-lg" >
-                	${o.ANSWER}
-
+                	<p>Answer: ${o.ANSWER}</p>
  		<div>
  	   </div>
         </c:forEach>
@@ -113,23 +111,35 @@ body {
 	    <div>
 	    	<table border="1" cellpadding="2" cellspacing="2">
 <c:if test="${not empty question}">
+
     <table>
         <c:forEach var="o" items="${question}">
-        <c:if test="${o.is_answered == false}">
+        	<c:if test="${o.is_answered==false}">
             <tr>
                 <td position:absolute>
                 <div class="btn question-primary btn-lg" >
                 	${o.QUESTION}
                 </div>
-	       <button type="button" class="btn btn-sm"  data-toggle="collapse" data-target="#form1" aria-controls="form1" aria-expanded="false" aria-label="Toggle navigation" >
+	       <button type="button" class="btn btn-sm"  data-toggle="collapse" data-target="#form1" aria-controls="#form1" aria-expanded="false" aria-label="Toggle navigation" >
  				<span class="navbar-toggler-icon"></span>
  				Button Collapse
  				</button>
+<form id="form1" class="form-signin" method = "post" action="/answeredQuestion">
+			<input type="hidden" name="question_id" value="${o.ID}">
+            <input type="hidden" name="id" value = "${answer.answerid}" >
+              <div class="form-label-group">
+              <input type="text" name="ANSWER" class="form-control" placeholder="Answer"  required autofocus>
+              </div>
 
-		      </td>
+              
+              <hr>
+              
+             <button class="btn btn-primary btn-lg" float="right" type="submit" >Answer</button>
+<button type="button" class="btn btn-primary btn-lg" float="right">Delete</button>
+            </form>
+	</td>
             </tr>
-
- 		</c:if>
+</c:if>	
         </c:forEach>
     </table>
 </c:if>

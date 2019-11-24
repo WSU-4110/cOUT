@@ -75,6 +75,10 @@ public class Answer {
 		this.question = question;
 	}
     
+    public Answer(Question question) {
+        this.question = question;
+        createdDate = new Date();
+    }
 
 	public Answer() {
 	

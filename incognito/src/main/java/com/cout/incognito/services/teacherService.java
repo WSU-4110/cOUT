@@ -1,8 +1,6 @@
 package com.cout.incognito.services;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.cout.incognito.models.Teacher;
 import com.cout.incognito.repository.teacherRepo;
 

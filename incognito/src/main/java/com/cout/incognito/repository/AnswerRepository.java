@@ -11,6 +11,5 @@ import com.cout.incognito.models.Answer;
 @Transactional
 public interface AnswerRepository extends CrudRepository<Answer, Integer> {
 		List<Answer> findById(int id);
-
 	
 }
