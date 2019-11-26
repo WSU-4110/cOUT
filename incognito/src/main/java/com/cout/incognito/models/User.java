@@ -6,18 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="students")
-public class Student implements UserRole{
+@Table(name="users")
+public class User implements UserRole{
 	
 	@Override
 	public String role() {
-		return "student";
+		return "";
 	}	
 
 	@Id 
@@ -32,62 +32,61 @@ public class Student implements UserRole{
 	private String password;
 	@Column(name="is_enabled")
 	private boolean isEnabled;
-	@Column(name="role")
-	private String role = this.role();
-	
+    @Column(name="role")
+    private String role;
 
-	public Student(){
+	public User(int iD, String nAME, String eMAIL, String password, boolean isEnabled, String role) {
+		super();
+		ID = iD;
+		NAME = nAME;
+		EMAIL = eMAIL;
+		this.password = password;
+		this.isEnabled = isEnabled;
+		this.role = role;
+	}
+
+	public User(){
 		
 	}
 
-	public Student(int ID, String NAME, String EMAIL, String password, boolean isEnabled, String role) {
-		super();
-		this.ID = ID;
-		this.NAME = NAME;
-		this.EMAIL = EMAIL;
-		this.password = password;
-		this.isEnabled = false;
-		this.role = role;
+	public int getID() {
+		return ID;
 	}
-	
-	public void setNAME(String NAME) {
-		this.NAME = NAME;
+
+	public void setID(int iD) {
+		ID = iD;
 	}
-	
+
 	public String getNAME() {
 		return NAME;
 	}
-	
-	public void setEMAIL(String EMAIL) {
-		this.EMAIL = EMAIL;
+
+	public void setNAME(String nAME) {
+		NAME = nAME;
 	}
-	
+
 	public String getEMAIL() {
 		return EMAIL;
 	}
 
+	public void setEMAIL(String eMAIL) {
+		EMAIL = eMAIL;
+	}
 
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	@Override
-	public String toString() {
-		return "Student [ID=" + ID + ", NAME=" + NAME + ", EMAIL=" + EMAIL +", password=" + password + "]";
-	}
+
 	public boolean isEnabled() {
 		return isEnabled;
 	}
+
 	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = true;
+		this.isEnabled = isEnabled;
 	}
 
 	public String getRole() {
@@ -98,5 +97,12 @@ public class Student implements UserRole{
 		this.role = role;
 	}
 
-
+	@Override
+	public String toString() {
+		return "User [ID=" + ID + ", NAME=" + NAME + ", EMAIL=" + EMAIL + ", password=" + password + ", isEnabled="
+				+ isEnabled + ", role=" + role + "]";
+	}
+	
+	
+	
 }

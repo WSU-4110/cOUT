@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-public class studentConfirmationToken {
+public class ConfirmationToken {
 	
 
 
@@ -32,17 +32,17 @@ public class studentConfirmationToken {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date createdDate;
 
-	    @OneToOne(targetEntity = Student.class, fetch = FetchType.EAGER)
-	    @JoinColumn(nullable = false, name = "student_id")
-	    private Student student;
+	    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+	    @JoinColumn(nullable = false, name = "user_id")
+	    private User user;
 	    
 	    
-		public studentConfirmationToken(){
+		public ConfirmationToken(){
 			
 		}
 		
-	    public studentConfirmationToken(Student student) {
-	        this.student = student;
+	    public ConfirmationToken(User user) {
+	        this.user = user;
 	        createdDate = new Date();
 	        confirmationToken = UUID.randomUUID().toString();
 	    }
@@ -71,12 +71,12 @@ public class studentConfirmationToken {
 			this.createdDate = createdDate;
 		}
 
-		public Student getStudent() {
-			return student;
+		public User getUser() {
+			return user;
 		}
 
-		public void setStudent(Student student) {
-			this.student = student;
+		public void setUser(User user) {
+			this.user = user;
 		}
 	    
 	    
