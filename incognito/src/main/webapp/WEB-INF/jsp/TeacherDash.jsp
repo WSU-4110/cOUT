@@ -59,15 +59,11 @@ body {
                 <span class="sr-only">(current)</span>
               </a>
         </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign Out</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
 	 <li class="nav-item">
-        <a href="index.html" class="btn btn-info btn-logout">
+        <a href="/logout" class="btn btn-info btn-logout">
           Log out
         </a>
         </li>

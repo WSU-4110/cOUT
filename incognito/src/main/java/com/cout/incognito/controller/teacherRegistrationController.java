@@ -1,4 +1,4 @@
-package com.cout.incognito.controller;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import com.cout.incognito.repository.teacherRepo;
 import com.cout.incognito.services.EmailSenderService;
 import com.cout.incognito.services.teacherService;
 
-@Component
-@Controller
 public class teacherRegistrationController {
 	@Autowired
 	private teacherService tService;

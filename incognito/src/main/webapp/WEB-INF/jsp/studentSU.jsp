@@ -22,17 +22,17 @@
           <div class="card-body">
             <h5 class="card-title text-center">Student Sign-Up</h5>
             <div>
-            <form class="form-signin" method = "POST" action="/registered-student">
-            <input type="hidden" name="id" value="${student.ID}">
+            <form class="form-signin" method = "POST" action="/registered-User">
+            <input type="hidden" name="id" value="${User.ID}">
             <input type="hidden" name="role" value="student">
               <div class="form-label-group">
                 <label for="inputName">Name</label>
-                <input type="text" value="${student.NAME}" name="NAME" class="form-control" placeholder="Full Name"  required autofocus>
+                <input type="text" name="NAME" class="form-control" placeholder="Full Name"  required autofocus>
               </div>
 
               <div class="form-label-group">
                 <label for="inputEmail">Email</label>
-                <input type="email" value="${student.EMAIL}" name="EMAIL" class="form-control" placeholder="Email address"  required>
+                <input type="email" name="EMAIL" class="form-control" placeholder="Email address"  required>
               </div>
               
               <hr>

@@ -1,4 +1,4 @@
-package com.cout.incognito.controller;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import com.cout.incognito.repository.studentRepo;
 import com.cout.incognito.services.EmailSenderService;
 import com.cout.incognito.services.studentService;
 
-@Component
-@Controller 
+ 
 public class studentRegistrationController {
 
+	
 	@Autowired
 	private studentService sService;
 	
@@ -31,10 +31,17 @@ public class studentRegistrationController {
 	private EmailSenderService emailSenderService;
 	    
 	@RequestMapping("/studentSU") 
-	public String signup() {
+	public String studentSignup() {
 		System.out.println("AppController -> student");
 		return "studentSU";
 	}
+	
+	@RequestMapping("/teacherSU") 
+	public String teacherSignup() {
+		System.out.println("AppController ->teacher");
+		return "teacherSU";
+	}
+
 
 	@RequestMapping(value="/registered-student", method = {RequestMethod.POST})
 	public String registerStudent(Student student)
@@ -47,6 +54,7 @@ public class studentRegistrationController {
 	    }
 	    else
 	    {
+	    	
 	    	sService.saveStudent(student);
 	        studentConfirmationToken confirmationToken = new studentConfirmationToken(student);
 
@@ -63,12 +71,8 @@ public class studentRegistrationController {
 
 	        return "redirect:";
 	    }
-
 	}
-    
-
-
-	
+	    
 
 	
 

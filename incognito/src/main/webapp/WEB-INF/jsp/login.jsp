@@ -73,7 +73,7 @@
 				<form action="/login" method="POST">
 					<div class="form-group">
 					Email
-						<input type="text" class="form-control" name="username" placeholder="Enter Email" required>		
+						<input type="text" class="form-control" name="email" placeholder="Enter Email" required>		
 					</div>
 					Password
 					<div class="form-group">

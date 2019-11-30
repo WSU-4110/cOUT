@@ -21,40 +21,35 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 	
 	
-	//@Autowired
-	//private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	private PasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
 	private DataSource dataSource;
 	
-	@Value("${spring.queries.students-query}")
+	@Value("${spring.queries.users-query}")
 	private String studentQuery;
 	
-	@Value("${spring.queries.student-role-query}")
+	@Value("${spring.queries.user-role-query}")
 	private String studentRoleQuery;
 	
-	@Value("${spring.queries.teachers-query}")
-	private String teacherQuery;
+	//@Value("${spring.queries.teachers-query}")
+	//private String teacherQuery;
 	
-	@Value("${spring.queries.teacher-role-query}")
-	private String teacherRoleQuery;
+	//@Value("${spring.queries.teacher-role-query}")
+	//private String teacherRoleQuery;
 	
 	@Autowired
 	private CustomLoginSuccessHandler successHandler;
 	
-	//@Override
-	//protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		//auth.jdbcAuthentication().usersByUsernameQuery(studentQuery).authoritiesByUsernameQuery(studentRoleQuery)
-			//.usersByUsernameQuery(teacherQuery).authoritiesByUsernameQuery(teacherRoleQuery)
-			//.dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
-		
-	//}
-	   @Override
-	   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	      auth.inMemoryAuthentication()
-	      .withUser("admin").password(passwordEncoder().encode("admin123")).roles("teacher");
-	   }
-	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth.jdbcAuthentication().usersByUsernameQuery(studentQuery).authoritiesByUsernameQuery(studentRoleQuery)
+			.dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
+	      //auth.inMemoryAuthentication()
+	      //.withUser("admin").password(passwordEncoder().encode("admin123")).roles("teacher");
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http
@@ -65,17 +60,20 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 				.antMatchers("/login").permitAll()
 				.antMatchers("/studentSU").permitAll()
 				.antMatchers("/teacherSU").permitAll()
+				.antMatchers("/registered-User").permitAll()
 				.antMatchers("/registered-student").permitAll()
 				.antMatchers("/registered-teacher").permitAll()
-				.antMatchers("/confirm-student-account").permitAll()
+				.antMatchers("/confirm-user-account").permitAll()
 				.antMatchers("/confirm-teacher-account").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.failureUrl("/login?error=true")
-				//.successHandler(successHandler)
-				.defaultSuccessUrl("/TeacherDash")
+				.successHandler(successHandler)
+				.usernameParameter("email")
+				.passwordParameter("password")
+				//.defaultSuccessUrl("/TeacherDash")
 				.and()
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

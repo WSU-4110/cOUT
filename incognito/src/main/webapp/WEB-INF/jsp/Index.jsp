@@ -84,10 +84,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<form action="/" method="post">
+				<form action="/login" method="POST">
 					<div class="form-group">
 					Email
-						<input type="text" class="form-control" name="EMAIL" placeholder="Enter Email" required>		
+						<input type="text" class="form-control" name="email" placeholder="Enter Email" required>		
 					</div>
 					Password
 					<div class="form-group">

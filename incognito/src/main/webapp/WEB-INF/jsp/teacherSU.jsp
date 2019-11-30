@@ -8,7 +8,7 @@
 
 <link href="css/creative.min.css" rel="stylesheet">
 
-<title>Register</title>
+<title>Teacher Registration</title>
 </head>
 <body>
   <div class="container">
@@ -20,12 +20,12 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Teacher Sign-Up</h5>
-            <form class="form-signin" method = "post" action="/registered-teacher">
-            <input type="hidden" name="id" value="${Teacher.ID}">
+            <form class="form-signin" method = "post" action="/registered-User">
+            <input type="hidden" name="id" value="${User.ID}">
             <input type="hidden" name="role" value="teacher">
               <div class="form-label-group">
               <label for="Name">Full Name</label>
-               <input type="text" value="${Teacher.NAME}" name="NAME" class="form-control" placeholder="Full Name" required autofocus>
+               <input type="text" name="NAME" class="form-control" placeholder="Full Name" required autofocus>
                 
               </div>
 
@@ -39,7 +39,7 @@
 
               <div class="form-label-group">
                 <label for="inputPassword">Password</label>
-                <input  value="${Teacher.password}" type="password" name="password" class="form-control" placeholder="Password" required>
+                <input  type="password" name="password" class="form-control" placeholder="Password" required>
               </div>
               
               <div class="form-label-group">
