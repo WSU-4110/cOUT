@@ -38,11 +38,30 @@ public class incognitoController {
 		request.setAttribute("mode","MODE_HOME");
 		return "index1";
 	}
+	
+	@RequestMapping("/studentDash")
+	public String getStudentDash() {
+		return "studentDash";
+	}
+	
 	@RequestMapping("/TeacherDash")
 	public String teacherDash(HttpServletRequest request){
 		request.setAttribute("mode","MODE_HOME");
 		return "TeacherDash";
 	}
+	
+	@RequestMapping("/teacherMsgBoard")
+	public String teacherMsgBoard(HttpServletRequest request){
+		request.setAttribute("mode","MODE_HOME");
+		return "teacherMsgBoard";
+	}
+	
+	@RequestMapping("/studentMsgBoard")
+	public String studentMsgBoard(HttpServletRequest request){
+		request.setAttribute("mode","MODE_HOME");
+		return "studentMsgBoard";
+	}
+	
 	@RequestMapping(value="/confirm-student-account", method= {RequestMethod.GET, RequestMethod.POST})
 	public String confirmStudentAccount(@RequestParam("token")String studentConfirmationToken)
 	{
@@ -62,6 +81,9 @@ public class incognitoController {
 	    }
 
 	}
+	
+	
+	
 	@RequestMapping(value="/confirm-teacher-account", method= {RequestMethod.GET, RequestMethod.POST})
 	public String confirmTeacherAccount(@RequestParam("token")String teacherConfirmationToken)
 	{
