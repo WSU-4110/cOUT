@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Constraint;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
 import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
@@ -13,12 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name="users")
-public class User implements UserRole{
-	
-	@Override
-	public String role() {
-		return "";
-	}	
+public class User{
 
 	@Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +24,8 @@ public class User implements UserRole{
 	private int ID;
 	@Column(name="NAME")
 	private String NAME;
-	@Column(name="EMAIL")
+	@Pattern(regexp =  ".*@wayne.edu", message = "Please enter a Wayne State email")
+	@Column(name="email") 
 	private String EMAIL;
 	@Column(name="password")
 	private String password;
