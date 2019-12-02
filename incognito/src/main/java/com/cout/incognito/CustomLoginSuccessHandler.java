@@ -39,7 +39,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 			roles.add(a.getAuthority());
 		}
 		if (roles.contains("teacher")) {
-			Url = "/TeacherDash";
+			Url = "/teacherDash";
 		} 
 		else if (roles.contains("student")) {
 			Url = "/studentDash";

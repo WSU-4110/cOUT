@@ -31,7 +31,7 @@ public class incognitoController implements ErrorController {
 	
 	@RequestMapping("/")
 	public String welomcePage(){
-		return "index";
+		return "Index";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -66,10 +66,9 @@ public class incognitoController implements ErrorController {
 		
 	   return mv;
 	}
-	
 	@RequestMapping("/studentSU") 
 	public String studentSignup() {
-		System.out.println("AppController -> student");
+		System.out.println("AppController -> student");	
 		return "studentSU";
 	}
 	

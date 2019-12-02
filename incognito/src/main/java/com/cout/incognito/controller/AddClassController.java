@@ -1,4 +1,5 @@
 package com.cout.incognito.controller;
+import java.util.Random;
 
 import com.cout.incognito.models.Answer;
 import com.cout.incognito.models.Courses;
@@ -31,20 +32,20 @@ public class AddClassController {
 	@Autowired
 	public UserRepo userRepo;
 	
-
+	Random rand = new Random();
 	
 	@Autowired
 	private CoursesService coursesService;
 	
 	@RequestMapping(value="/addCourse", method=RequestMethod.POST)
-	public String saveCourses(Courses course, User user) {
+	public String saveCourses(Courses course, User user, String crsName) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		user = userRepo.findByEMAILIgnoreCase(name);
-				
-		course = new Courses(user);
+		//int accessCode = rand.nextInt(100000)+100000;
+		course = new Courses(user, crsName);
 		coursesService.saveCourse(course);
-	
+			
 	    return "redirect:/teacherDash";
 	}
 	

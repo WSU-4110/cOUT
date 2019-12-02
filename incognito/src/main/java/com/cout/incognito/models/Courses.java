@@ -1,7 +1,6 @@
 package com.cout.incognito.models;
 
-import java.util.Random;
-import java.util.UUID;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Component;
 @Table(name = "courses")
 public class Courses {
 	
-	Random rand = new Random();
 	
 	@Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,17 +32,14 @@ public class Courses {
     @JoinColumn(nullable = false, name = "teacher_id")
 	private User user;
     
-    
-
-    
     public Courses() {
     	
     }
 
-	public Courses(User user) {
+	public Courses(User user, String crsName) {
 		super();
-		accessCode = rand.nextInt(100000)+100000;
 		this.user = user;
+		this.crsName = crsName;
 	}
 
 	public int getCrsId() {

@@ -35,48 +35,63 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="/">Incognito</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Incognito</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#myModal" class="trigger-btn" data-toggle="modal" >Login</a>
+          </li>
+    
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
   <!-- Masthead -->
- <header class="masthead">
-    <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
-            <h5 class="card-title text-center">Sign In</h5>
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end">
+          <h1 class="text-uppercase text-white font-weight-bold">ChatBot</h1>
           <c:if test="${not empty errorMessage}">
 						<div id=test style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div>
 					</c:if>
-					<form action="/login" method="POST">
-              <div class="form-label-group">
-                  <label for="inputEmail">Email address</label>
-				<input type="text" class="form-control" name="email" placeholder="Enter Email" required>		
-            
-              </div>
+          <hr class="divider my-4">
+        </div>
+        <div class="col-lg-8 align-self-baseline">
 
-              <div class="form-label-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter Password" required >	
-              </div>
-
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
-              </div>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-              </form>
-          </div>
+				<form action="/login" method="POST">
+					<div class="form-group">
+					Email
+						<input type="text" class="form-control" name="email" placeholder="Enter Email" required>		
+					</div>
+					Password
+					<div class="form-group">
+						<input type="password" class="form-control" name="password" placeholder="Enter Password" required >	
+					</div>        
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-xl js-scroll-trigger">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>     
         </div>
       </div>
     </div>
-  </div>
   </header>
+  
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">

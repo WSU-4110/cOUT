@@ -23,5 +23,4 @@ public class CoursesService {
 	public void saveCourse(Courses course){
 		courseRepository.save(course);
 	}
-
-}
+}	

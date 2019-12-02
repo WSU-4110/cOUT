@@ -53,20 +53,25 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http
-			.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/teacherDash").hasRole("teacher")
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/studentSU").permitAll()
 				.antMatchers("/teacherSU").permitAll()
 				.antMatchers("/registered-User").permitAll()
-				.antMatchers("/registered-student").permitAll()
-				.antMatchers("/registered-teacher").permitAll()
+				.antMatchers("/registered-Teacher").permitAll()
 				.antMatchers("/confirm-user-account").permitAll()
 				.antMatchers("/confirm-teacher-account").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/error").permitAll()
+				.antMatchers("/studentDash").hasAuthority("student")
+				.antMatchers("/studentMessageBoard").hasAnyAuthority("student")
+				.antMatchers("/addClass").hasAuthority("teacher")
+				.antMatchers("/teacherDash").hasAuthority("teacher")
+				.antMatchers("/teacherMessageBoard").hasAuthority("teacher")
+				.anyRequest()
+				.authenticated()
 				.and()
+				.csrf().disable()
 			.formLogin()
 				.loginPage("/login")
 				.failureUrl("/login?error=true")
@@ -79,7 +84,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/").and()
 				.exceptionHandling()
-				.accessDeniedPage("/access-denied");
+			.accessDeniedPage("/access-denied");
 	}
 	
 	@Override

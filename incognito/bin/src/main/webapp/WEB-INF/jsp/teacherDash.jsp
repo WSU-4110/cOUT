@@ -32,7 +32,7 @@ body {
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="/">Incognito</a>
+    <a class="navbar-brand" href="index.html">Incognito</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -62,7 +62,7 @@ body {
       <h1 class="font-weight-light">Welcome ${name}</h1>
       <hr>
       
-      <div>
+     <div>
      <c:if test = "${not empty courses}">
      <table>
      <c:forEach var="o" items="${courses}">
@@ -76,13 +76,14 @@ body {
      </c:if>
       	<button type="button" class="btn btn-primary btn-lg" data-target="#myModal" data-toggle="collapse" >Add Class</button>
 	      <div id = "myModal" class = "collapse">
-				      <form action= "/addCourse" method = "POST">
+				      <form action= "/addClass">
 				     	<div class= "modal-header">
 				     		<h4 class = "modal-title">Add Class</h4>
 				     		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				     	</div>
-				     	<input type="hidden" name="teacher_id" value="${User.ID}" >
-				     	<input type="hidden" name="accessCode" value="100000" >
+				     	<input type="hidden" name="crsId" value="${Courses.crsId}" >
+				     	<input type="hidden" name="user" value="${User.ID}" >
+				     	<input type="hidden" name="accessCode" value="${Courses.accessCode}" >
 				     	
 				     	<div class = "modal-body">
 				     		<h5>Class Name:</h5><input type="text" class="form-control" name="crsName" placeholder="Enter Class name" required >
@@ -94,7 +95,6 @@ body {
 			    	</div>  
 	      </div>
       
-  </div>
   </div>
 </div>
 </body>

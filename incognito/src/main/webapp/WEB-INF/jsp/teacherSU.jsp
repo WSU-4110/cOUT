@@ -36,7 +36,7 @@
           <div class="card-body">
             <h5 class="card-title text-center">Teacher Sign-Up</h5>
             <div>
-            <form class="form-signin" method = "POST" action="/registered-Teacher">
+            <form class="form-signin" method = "POST" action="/registered-User">
             <input type="hidden" name="id" value="${User.ID}">
             <input type="hidden" name="role" value="teacher">
               <div class="form-label-group">

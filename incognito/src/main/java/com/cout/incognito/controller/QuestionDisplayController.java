@@ -25,11 +25,11 @@ public class QuestionDisplayController {
 	private AnswerRepository answerRepository;
 
 	
-	@RequestMapping(value="TeacherDash", method=RequestMethod.GET)
+	@RequestMapping(value="/teacherMessageBoard", method=RequestMethod.GET)
 	public ModelAndView getQuestions() {
 		List<Question> questions = (List<Question>) questionRepository.findAll();
 		List<Answer> answers = (List<Answer>) answerRepository.findAll(); 
-	    ModelAndView mv = new ModelAndView("TeacherDash"); 
+	    ModelAndView mv = new ModelAndView("teacherMessageBoard"); 
 	    mv.addObject("question", questions);
 	    mv.addObject("answer", answers);
 	    

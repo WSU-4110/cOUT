@@ -39,68 +39,36 @@ public class UserRegistrationController {
 	    
 	    
 
-	@RequestMapping(value="/registered-User", method = {RequestMethod.POST})
-	public String registerUser(User user,Model model)
-	{
-		User existingUser = userRepository.findByEMAILIgnoreCase(user.getEMAIL());
-	    if(existingUser != null)
-	    {
-	    	String emailError = "User already exists";
-	    	model.addAttribute("emailError", emailError);
-	       return "studentSU";
-	    }
-	    else
-	    {
-	    	uService.saveUser(user);
-	        ConfirmationToken confirmationToken = new ConfirmationToken(user);
+		@RequestMapping(value="/registered-User", method = {RequestMethod.POST})
+		public String registerUser(User user,Model model)
+		{
+			User existingUser = userRepository.findByEMAILIgnoreCase(user.getEMAIL());
+		    if(existingUser != null)
+		    {
+		    	String emailError = "User already exists";
+		    	model.addAttribute("emailError", emailError);
+		       return "studentSU";
+		    }
+		    else
+		    {
+		    	uService.saveUser(user);
+		        ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
-	        confirmationTokenRepository.save(confirmationToken);
+		        confirmationTokenRepository.save(confirmationToken);
 
-	        SimpleMailMessage mailMessage = new SimpleMailMessage();
-	        mailMessage.setTo(user.getEMAIL());
-	        mailMessage.setSubject("Complete Registration!");
-	        mailMessage.setFrom("TeamCOUT");
-	        mailMessage.setText("To confirm your account, please click here : "
-	        +"http://localhost:8080/confirm-user-account?token="+confirmationToken.getConfirmationToken());
+		        SimpleMailMessage mailMessage = new SimpleMailMessage();
+		        mailMessage.setTo(user.getEMAIL());
+		        mailMessage.setSubject("Complete Registration!");
+		        mailMessage.setFrom("TeamCOUT");
+		        mailMessage.setText("To confirm your account, please click here : "
+		        +"http://localhost:8080/confirm-user-account?token="+confirmationToken.getConfirmationToken());
 
-	        emailSenderService.sendEmail(mailMessage);
+		        emailSenderService.sendEmail(mailMessage);
 
-	        return "redirect:";
-	    }
+		        return "EmailCheck";
+		    }
 
-}
-	
-
-	@RequestMapping(value="/registered-Teacher", method = {RequestMethod.POST})
-	public String registerTeacher(User user,Model model)
-	{
-		User existingUser = userRepository.findByEMAILIgnoreCase(user.getEMAIL());
-	    if(existingUser != null)
-	    {
-	    	String emailError = "User already exists";
-	    	model.addAttribute("emailError", emailError);
-	       return "teacherSU";
-	    }
-	    else
-	    {
-	    	uService.saveUser(user);
-	        ConfirmationToken confirmationToken = new ConfirmationToken(user);
-
-	        confirmationTokenRepository.save(confirmationToken);
-
-	        SimpleMailMessage mailMessage = new SimpleMailMessage();
-	        mailMessage.setTo(user.getEMAIL());
-	        mailMessage.setSubject("Complete Registration!");
-	        mailMessage.setFrom("TeamCOUT");
-	        mailMessage.setText("To confirm your account, please click here : "
-	        +"http://localhost:8080/confirm-user-account?token="+confirmationToken.getConfirmationToken());
-
-	        emailSenderService.sendEmail(mailMessage);
-
-	        return "redirect:";
-	    }
-
-}
+	}
 
 		
 		@RequestMapping(value="/confirm-user-account", method= {RequestMethod.GET, RequestMethod.POST})
@@ -114,7 +82,7 @@ public class UserRegistrationController {
 		    		
 			        user.setEnabled(true);
 			        userRepository.save(user);
-			        return "redirect:/login";
+			        return "Index";
 		    }
 		    else
 		    {
