@@ -27,8 +27,7 @@
 </head>
 
 <body id="page-top">
-<c:choose>
-<c:when test="${mode=='MODE_HOME'}">
+
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -101,8 +100,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/creative.min.js"></script>
-</c:when>
-</c:choose>
+
 </body>
 
 </html>

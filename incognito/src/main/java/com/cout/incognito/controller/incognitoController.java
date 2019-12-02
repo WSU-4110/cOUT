@@ -1,98 +1,101 @@
 package com.cout.incognito.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.cout.incognito.models.studentConfirmationToken;
-import com.cout.incognito.models.teacherConfirmationToken;
-import com.cout.incognito.models.Question;
-import com.cout.incognito.models.Student;
-import com.cout.incognito.models.Teacher;
-import com.cout.incognito.repository.studentConfirmationTokenRepo;
-import com.cout.incognito.repository.studentRepo;
-import com.cout.incognito.repository.teacherConfirmationTokenRepo;
-import com.cout.incognito.repository.teacherRepo;
-import com.cout.incognito.services.QuestionServiceImpl;
+import com.cout.incognito.models.Courses;
+import com.cout.incognito.models.User;
+import com.cout.incognito.repository.CoursesRepo;
+import com.cout.incognito.repository.UserRepo;
 
-
+@Component
 @Controller 
-public class incognitoController {
+public class incognitoController implements ErrorController {
 	@Autowired
-	private Question question;
-	@Autowired 
-	private QuestionServiceImpl questionService;
-	@Autowired
-	private studentConfirmationTokenRepo studentConfirmationTokenRepository;
-	@Autowired
-	private teacherConfirmationTokenRepo teacherConfirmationTokenRepository;
-	@Autowired
-	private studentRepo studentRepository;
+	public UserRepo userRepo;
 	
 	@Autowired
-	private teacherRepo teacherRepository;
+	private CoursesRepo coursesrepo;
 	
 	@RequestMapping("/")
-	public String welcomePage(HttpServletRequest request){
-		request.setAttribute("mode","MODE_HOME");
-		return "index1";
+	public String welomcePage(){
+		return "index";
 	}
-	@RequestMapping("/TeacherDash")
-	public String teacherDash(HttpServletRequest request){
-		request.setAttribute("mode","MODE_HOME");
-		return "TeacherDash";
-	}
-	@RequestMapping(value="/confirm-student-account", method= {RequestMethod.GET, RequestMethod.POST})
-	public String confirmStudentAccount(@RequestParam("token")String studentConfirmationToken)
-	{
-	    studentConfirmationToken token = studentConfirmationTokenRepository.findByConfirmationToken(studentConfirmationToken);
-
-	    if(studentConfirmationToken != null)
-	    {
-	        Student student = studentRepository.findByEMAILIgnoreCase(token.getStudent().getEMAIL());
-	    		
-		        student.setEnabled(true);
-		        studentRepository.save(student);
-		        return "index1";
-	    }
-	    else
-	    {
-	        return "linkbroken";
-	    }
-
-	}
-	@RequestMapping(value="/confirm-teacher-account", method= {RequestMethod.GET, RequestMethod.POST})
-	public String confirmTeacherAccount(@RequestParam("token")String teacherConfirmationToken)
-	{
-	    
-		teacherConfirmationToken token = teacherConfirmationTokenRepository.findByConfirmationToken(teacherConfirmationToken);
-
-	    if(teacherConfirmationToken != null)
-	    {
-	        Teacher teacher = teacherRepository.findByEMAILIgnoreCase(token.getTeacher().getEMAIL());
-	    		
-		        teacher.setEnabled(true);
-		        teacherRepository.save(teacher);
-		        return "index1";
-	    }
-	    else
-	    {
-	        return "linkbroken";
-	    }
-
-	}
-
-
-		
-
-
 	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginHome(){
+		return "login";
+	}
+	
+	@RequestMapping(value="/studentMessageBoard", method=RequestMethod.GET)
+	public String studentMessageBoard(){
+		return "studentMessageBoard";
+	}
+	
+	@RequestMapping(value="/studentDash", method=RequestMethod.GET)
+	public String studentDash(ModelMap model){
+	   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	   String name = auth.getName();
+	   User userName = userRepo.findByEMAILIgnoreCase(name);
+	   model.addAttribute("name", userName.getNAME());
+	   
+	   return "studentDash";
+	}
+	
+	@RequestMapping(value="/teacherDash", method=RequestMethod.GET)
+	public ModelAndView teacherDash(ModelMap model){
+	   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	   String name = auth.getName();
+	   User userName = userRepo.findByEMAILIgnoreCase(name);
+	   model.addAttribute("name", userName.getNAME());
+	   List<Courses> courses = (List<Courses>) coursesrepo.findAll();
+	   ModelAndView mv = new ModelAndView("teacherDash"); 
+	   mv.addObject("courses", courses);	    
+		
+	   return mv;
+	}
+	
+	@RequestMapping("/studentSU") 
+	public String studentSignup() {
+		System.out.println("AppController -> student");
+		return "studentSU";
+	}
+	
+	@RequestMapping("/teacherSU") 
+	public String teacherSignup() {
+		System.out.println("AppController ->teacher");
+		return "teacherSU";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(){
+		return "logout";
+	}
 
+	@RequestMapping(value="/access-denied", method=RequestMethod.GET)
+	public String accessDenied(){
+		return "access-denied";
+	}
+	@RequestMapping("/error")
+	public String errorPage(){
+		return "error";
+	}
+	
+	@Override
+	public String getErrorPath() {
+		return "/error";
+	}
 
 } 

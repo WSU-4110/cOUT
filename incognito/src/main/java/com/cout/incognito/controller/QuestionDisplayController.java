@@ -1,29 +1,42 @@
 package com.cout.incognito.controller;
 
+import com.cout.incognito.models.Answer;
 import com.cout.incognito.models.Question;
+import com.cout.incognito.repository.AnswerRepository;
+import com.cout.incognito.repository.QuestionRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-
-import com.cout.incognito.services.QuestionServiceImpl;
-
+ 
+@Component
 @Controller
-@RequestMapping("/questions")
 public class QuestionDisplayController {
+	
 	@Autowired
-	private Question question;
-	@Autowired 
-	private QuestionServiceImpl questionService;
+	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private AnswerRepository answerRepository;
 
 	
+	@RequestMapping(value="TeacherDash", method=RequestMethod.GET)
+	public ModelAndView getQuestions() {
+		List<Question> questions = (List<Question>) questionRepository.findAll();
+		List<Answer> answers = (List<Answer>) answerRepository.findAll(); 
+	    ModelAndView mv = new ModelAndView("TeacherDash"); 
+	    mv.addObject("question", questions);
+	    mv.addObject("answer", answers);
+	    
 	
-	public String questionIndex(ModelMap modelMap){
-		modelMap.put("questions", questionService.find(question.getID()));
-		return "TeacherDash";
-		}
+	    return mv;
+	}
+	
+
 
 }

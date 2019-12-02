@@ -14,12 +14,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
-public class teacherConfirmationToken {
+public class ConfirmationToken {
 	
-		public teacherConfirmationToken(){
-			
-		}
+
 
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,12 +32,17 @@ public class teacherConfirmationToken {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date createdDate;
 
-	    @OneToOne(targetEntity = Teacher.class, fetch = FetchType.EAGER)
-	    @JoinColumn(nullable = false, name = "teacher_id")
-	    private Teacher teacher;
-
-	    public teacherConfirmationToken(Teacher teacher) {
-	        this.teacher = teacher;
+	    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+	    @JoinColumn(nullable = false, name = "user_id")
+	    private User user;
+	    
+	    
+		public ConfirmationToken(){
+			
+		}
+		
+	    public ConfirmationToken(User user) {
+	        this.user = user;
 	        createdDate = new Date();
 	        confirmationToken = UUID.randomUUID().toString();
 	    }
@@ -65,12 +71,12 @@ public class teacherConfirmationToken {
 			this.createdDate = createdDate;
 		}
 
-		public Teacher getTeacher() {
-			return teacher;
+		public User getUser() {
+			return user;
 		}
 
-		public void setTeacher(Teacher teacher) {
-			this.teacher = teacher;
+		public void setUser(User user) {
+			this.user = user;
 		}
 	    
 	    

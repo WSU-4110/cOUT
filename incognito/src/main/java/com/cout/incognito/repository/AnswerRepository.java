@@ -5,12 +5,11 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cout.incognito.models.Question;
+import com.cout.incognito.models.Answer;
 
-@Repository("QuestionRepository")
+@Repository("AnswerRepository")
 @Transactional
-public interface QuestionRepository extends CrudRepository<Question, Integer> {
-	List<Question> findById(int id);
-
-
+public interface AnswerRepository extends CrudRepository<Answer, Integer> {
+		List<Answer> findById(int id);
+	
 }
