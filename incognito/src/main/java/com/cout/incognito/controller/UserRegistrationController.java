@@ -1,10 +1,15 @@
 package com.cout.incognito.controller;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,17 +40,17 @@ public class UserRegistrationController {
 	    
 
 		@RequestMapping(value="/registered-User", method = {RequestMethod.POST})
-		public String registerUser(User user)
+		public String registerUser(User user,Model model)
 		{
-
-		    User existingUser = userRepository.findByEMAILIgnoreCase(user.getEMAIL());
+			User existingUser = userRepository.findByEMAILIgnoreCase(user.getEMAIL());
 		    if(existingUser != null)
 		    {
-		       return "linkbroken";
+		    	String emailError = "User already exists";
+		    	model.addAttribute("emailError", emailError);
+		       return "studentSU";
 		    }
 		    else
 		    {
-		    	
 		    	uService.saveUser(user);
 		        ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
@@ -77,7 +82,7 @@ public class UserRegistrationController {
 		    		
 			        user.setEnabled(true);
 			        userRepository.save(user);
-			        return "redirect:";
+			        return "redirect:/login";
 		    }
 		    else
 		    {
@@ -87,7 +92,6 @@ public class UserRegistrationController {
 		}
 
 
-	
 
 	
 

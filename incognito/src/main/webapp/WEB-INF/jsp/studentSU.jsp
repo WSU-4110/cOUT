@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="ISO-8859-1">
-<link href="css/signup.css" rel="stylesheet" type="text/css">
+<head>
+  <script src="js/creative.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <link href="css/signup.css" rel="stylesheet" type="text/css">
 
 <link href="css/creative.min.css" rel="stylesheet">
+
+<style>
+.errorMessage {
+	color:red; 
+	font-weight: bold; 
+}
+</style>
+  
+</head>
+
 
 <title>Student Registration</title>
 <body>
@@ -30,21 +44,25 @@
                 <input type="text" name="NAME" class="form-control" placeholder="Full Name"  required autofocus>
               </div>
 
+	              <div class = "errorMessage" id = "test">
+	              	${emailError}
+	              </div>
+	              
               <div class="form-label-group">
                 <label for="inputEmail">Email</label>
-                <input type="email" name="EMAIL" class="form-control" placeholder="Email address"  required>
+                <input pattern=".*@wayne.edu" title="Wayne State Email Only" type="email" name="EMAIL" class="form-control" placeholder="Email address"  required>
               </div>
               
               <hr>
 
               <div class="form-label-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" id="password"  name="password" class="form-control" placeholder="Password" required>
+                <label for="password">Password</label>
+                <input type="password" id="password"  name="password" class="form-control" placeholder="Password"  onchange='validatePassword()' required>
               </div>
               
               <div class="form-label-group">
-              	<label for="inputConfirmPassword">Confirm password</label>
-                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required onkeyup='check()'>
+              	<label for="confirm_password">Confirm password</label>
+                <input type="password" id="confirm_password" class="form-control" placeholder="Password" onkeyup='validatePassword()' required >
               </div>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
@@ -58,6 +76,30 @@
       </div>
     </div>
   </div>
-</body>
 
+  <script>
+
+  $(function(){
+
+      $('#test').show();
+
+      setTimeout(function(){
+          $('#test').fadeOut('slow');
+      },3000);
+
+  });
+  </script>
+  <script type ="text/javascript">
+      var password = document.getElementById("password");
+      var confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+      </script> 
+</body>
 </html>

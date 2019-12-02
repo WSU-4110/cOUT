@@ -48,11 +48,12 @@ pageEncoding="ISO-8859-1"%>
     </div>
   </nav>
 
-  <script>
+  <!-- <script>
        var timer = setTimeout(function() {
             window.location='/'
         }, 5000);
     </script>
+    -->
 
   <!-- Contact Section -->
   <!-- Contact Section -->
