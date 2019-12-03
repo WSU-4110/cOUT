@@ -9,7 +9,7 @@
 <meta charset="ISO-8859-1">
  <!-- Theme CSS - Includes Bootstrap -->
 <link href="/css/creative.min.css" rel="stylesheet">
-<link href="/css/teacherMsgBoard.css" rel="stylesheet">
+
 
   <!-- login pop window  -->
 <link href= "/css/index.css" rel= "stylesheet">
@@ -21,7 +21,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
 body {
-  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  background: url('https://www.pomona.edu/sites/default/files/styles/home_page_slide/public/images/paragraphs/burke-classroom.jpg?itok=wJ2bfbaV') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -62,24 +62,22 @@ body {
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="#">Incognito</a>
+    <a class="navbar-brand" href="/">Incognito</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home
+          <a class="nav-link" href="/teacherDash">Dashboard
                 <span class="sr-only">(current)</span>
               </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign Out</a>
+          <a class="nav-link" href="/logout">Log Out</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
+      
       </ul>
     </div>
   </div>
