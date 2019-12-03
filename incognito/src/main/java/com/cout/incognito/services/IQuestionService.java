@@ -9,7 +9,7 @@ import com.cout.incognito.models.Question;
 @Service
 public interface IQuestionService {
 
-	List<Question> getQuestionsById(int id);
+	Question getQuestionsById(int id);
 
 	void updateQuestion( Question question);
 	

@@ -10,7 +10,6 @@ import com.cout.incognito.models.Courses;
 
 @Repository("CoursesRepo")
 public interface CoursesRepo extends CrudRepository<Courses, Integer> {
-    List<Courses> findByCrsId(int crsId);
-    
-    
+    List<Courses> findByUser_ID(int user);
+    Courses findByAccessCode(int accesscode);
 }

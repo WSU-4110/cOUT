@@ -8,9 +8,20 @@
 <%@ page isELIgnored="false" %>
 <meta charset="ISO-8859-1">
  <!-- Theme CSS - Includes Bootstrap -->
-<link href="css/creative.min.css" rel="stylesheet">
+<link href="/css/creative.min.css" rel="stylesheet">
+<link href="/css/teacherMsgBoard.css" rel="stylesheet">
+
+  <!-- login pop window  -->
+<link href= "/css/index.css" rel= "stylesheet">
+  <!-- Theme CSS - Includes Bootstrap -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
 body {
+  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -47,6 +58,8 @@ body {
 </head>
 <body>
 <!-- Navigation -->
+<body>
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
     <a class="navbar-brand" href="#">Incognito</a>
@@ -60,13 +73,12 @@ body {
                 <span class="sr-only">(current)</span>
               </a>
         </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Out</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
-        </li>
-	 <li class="nav-item">
-        <a href="/logout" class="btn btn-info btn-logout">
-          Log out
-        </a>
         </li>
       </ul>
     </div>
@@ -75,39 +87,42 @@ body {
 
 <!-- Page Content -->
 <div class="container">
-  <div class="card ">
+  <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
-      <h1 class="font-weight-light">Teacher Messaging Board</h1>
+      <h1 class="font-weight-light">${course.crsName}</h1>
+
       <hr>
       <div class="split left">
   		<div class="centered">
-    		<h2 class = "font-weight-light">Answered Questions:</h2>
+    		<h2 class = "font-weight-light">Answered Questions</h2>
     		<p>Display of questions that have already been answered by Teacher</p>
-   <c:if test="${not empty answer}">
-   
+    		  		 <c:if test="${not empty question}">
+   <div>
     <table>
-        <c:forEach var="o" items="${answer}">
-
+        <c:forEach var="o" items="${question}">
+			<c:if test="${o.is_answered == true}">
             <tr>
                 <td position:absolute>
                 <div class="btn question-primary btn-lg" >
+                	<p>Question: ${o.QUESTION}</p>
                 	<p>Answer: ${o.ANSWER}</p>
- 		<div>
- 	   </div>
+				</div>
+				</td>
+				</tr>
+				</c:if>
         </c:forEach>
     </table>
 
 </c:if>
+</div>
   		</div>
 	</div>
 	
       <div class="split right">
   		<div class="centered">
-	    <h2 class = "font-weight-light">Unanswered Questions:</h2>
-	    <p>Display of questions that still need to be answered</p>
-	    <div>
-	    	<table border="1" cellpadding="2" cellspacing="2">
-<c:if test="${not empty question}">
+	    <h2 class = "font-weight-light">Asked Questions:</h2>
+	    <p>Display of questions that student has asked</p>
+	   <c:if test="${not empty question}">
 
     <table>
         <c:forEach var="o" items="${question}">
@@ -117,23 +132,23 @@ body {
                 <div class="btn question-primary btn-lg" >
                 	${o.QUESTION}
                 </div>
-	       <button type="button" class="btn btn-sm"  data-toggle="collapse" data-target="#form1" aria-controls="#form1" aria-expanded="false" aria-label="Toggle navigation" >
- 				<span class="navbar-toggler-icon"></span>
- 				Button Collapse
- 				</button>
-<form id="form1" class="form-signin" method = "post" action="/answeredQuestion">
-			<input type="hidden" name="question_id" value="${o.ID}">
-            <input type="hidden" name="id" value = "${answer.answerid}" >
-              <div class="form-label-group">
-              <input type="text" name="ANSWER" class="form-control" placeholder="Answer"  required autofocus>
-              </div>
-
-              
+                <button type="button" class="btn btn-primary btn-md" data-target="#addClass" data-toggle="collapse" >Inspect</button>
+	      <div id = "addClass" class = "collapse">
+				      <form action= "/answeredQuestion" method = "POST">
+				     	<div class = "modal-body">
+				     		<h5>Answer:</h5>
+				     		<input type = "hidden" name="questionId" value="${o.id}">
+				     		<input type="text" class="form-control" name="answerQuestion" placeholder="Answer Here"required >
+				     	</div>
+				     	<div class="form-group">
+				     	      <input type="hidden" name="accessCode" value="${course.accessCode}">
+							 <input type="submit" class="btn btn-primary btn-lg" float="right" name="action" value="answer">
+			 				 <input type="submit" class="btn btn-primary btn-lg" float="right" name="action" value="delete" >
+						</div> 
+					 </form>     
+			    	</div>  
               <hr>
-              
-             <button class="btn btn-primary btn-lg" float="right" type="submit" >Answer</button>
-<button type="button" class="btn btn-primary btn-lg" float="right">Delete</button>
-            </form>
+             
 	</td>
             </tr>
 </c:if>	
@@ -142,11 +157,7 @@ body {
 </c:if>
 
 
-	</table>
-	
-
-</div>
-  		</div>
+	      		</div>
 	</div>
       
       

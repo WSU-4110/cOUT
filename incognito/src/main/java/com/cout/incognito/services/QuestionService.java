@@ -14,8 +14,7 @@ public class QuestionService implements IQuestionService{
 	private QuestionRepository questionRepository;
 	
 	@Override
-	public List<Question> getQuestionsById(int id) {
-		// TODO Auto-generated method stub
+	public Question getQuestionsById(int id) {
 		return questionRepository.findById(id);
 	}
 
@@ -27,12 +26,12 @@ public class QuestionService implements IQuestionService{
 
 	@Override
 	public void addQuestion(int id, String QUESTION) {
-		questionRepository.save(new Question(id, QUESTION, false));
+		questionRepository.save(new Question());
 	}
 
 	@Override
 	public void deleteQuestion(int id) {
-		List<Question> question = questionRepository.findById(id);
+		Question question = questionRepository.findById(id);
 		if(question != null){
 			questionRepository.deleteById(id);
 		}

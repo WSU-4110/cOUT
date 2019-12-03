@@ -2,8 +2,6 @@ package com.cout.incognito.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.core.Authentication;
@@ -31,7 +29,7 @@ public class incognitoController implements ErrorController {
 	
 	@RequestMapping("/")
 	public String welomcePage(){
-		return "Index";
+		return "index";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -60,15 +58,18 @@ public class incognitoController implements ErrorController {
 	   String name = auth.getName();
 	   User userName = userRepo.findByEMAILIgnoreCase(name);
 	   model.addAttribute("name", userName.getNAME());
-	   List<Courses> courses = (List<Courses>) coursesrepo.findAll();
+	   List<Courses> courses = (List<Courses>) coursesrepo.findByUser_ID(userName.getID());
 	   ModelAndView mv = new ModelAndView("teacherDash"); 
-	   mv.addObject("courses", courses);	    
-		
+	   if(courses !=null) {
+		   mv.addObject("courses", courses);	
+	   }
+    
 	   return mv;
 	}
+	
 	@RequestMapping("/studentSU") 
 	public String studentSignup() {
-		System.out.println("AppController -> student");	
+		System.out.println("AppController -> student");
 		return "studentSU";
 	}
 	

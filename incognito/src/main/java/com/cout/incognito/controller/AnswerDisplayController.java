@@ -10,8 +10,6 @@ import com.cout.incognito.models.Answer;
 import com.cout.incognito.models.Question;
 import com.cout.incognito.services.AnswerService;
 
-@Component
-@Controller
 public class AnswerDisplayController {
 	
 	@Autowired

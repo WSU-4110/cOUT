@@ -17,10 +17,10 @@ pageEncoding="ISO-8859-1"%>
   <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
   <!-- Theme CSS - Includes Bootstrap -->
-  <link href="css/creative.min.css" rel="stylesheet">
+  <link href="/css/creative.min.css" rel="stylesheet">
   
   <!-- login pop window  -->
-<link href= "css/index.css" rel= "stylesheet">
+<link href= "/css/index.css" rel= "stylesheet">
 </head>
 <body>
   <!-- Navigation -->
@@ -48,12 +48,12 @@ pageEncoding="ISO-8859-1"%>
     </div>
   </nav>
 
-  <!-- <script>
+ <script>
        var timer = setTimeout(function() {
             window.location='/'
         }, 5000);
     </script>
-    -->
+
 
   <!-- Contact Section -->
   <!-- Contact Section -->

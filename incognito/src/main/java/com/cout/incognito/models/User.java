@@ -1,38 +1,54 @@
 package com.cout.incognito.models;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.Constraint;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="users")
-public class User{
+@Table(name = "users")
+public class User {
 
-	@Id 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private int ID;
-	@Column(name="NAME")
+	
+	@NotNull(message = "Field cannot be null")
+	@Column(name = "NAME")
 	private String NAME;
-	@Pattern(regexp =  ".*@wayne.edu", message = "Please enter a Wayne State email")
-	@Column(name="email") 
+	
+	@Length(max = 50)
+	@Pattern(regexp = ".*@wayne.edu", message = "Please enter a Wayne State email")
+	@NotNull(message = "Field cannot be null")
+	@Column(name = "EMAIL")
 	private String EMAIL;
-	@Column(name="password")
+
+	@NotNull(message = "Field cannot be null")
+	@Column(name = "password")
 	private String password;
-	@Column(name="is_enabled")
+	
+	@Column(name = "is_enabled")
 	private boolean isEnabled;
-    @Column(name="role")
-    private String role;
+	
+	@Column(name = "role")
+	private String role;
+	
+	@ManyToMany(mappedBy= "user")
+    private List<Courses> course;
+	
+	  
+	@OneToMany(mappedBy="user")
+	private List<Question> questions; 
 
 	public User(int iD, String nAME, String eMAIL, String password, boolean isEnabled, String role) {
 		super();
@@ -44,8 +60,8 @@ public class User{
 		this.role = role;
 	}
 
-	public User(){
-		
+	public User() {
+
 	}
 
 	public int getID() {
@@ -101,7 +117,5 @@ public class User{
 		return "User [ID=" + ID + ", NAME=" + NAME + ", EMAIL=" + EMAIL + ", password=" + password + ", isEnabled="
 				+ isEnabled + ", role=" + role + "]";
 	}
-	
-	
-	
+
 }

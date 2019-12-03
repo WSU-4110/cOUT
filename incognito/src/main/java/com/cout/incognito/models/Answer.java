@@ -31,9 +31,7 @@ public class Answer {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @OneToOne(targetEntity = Question.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "question_id")
-    private Question question;
+  
 
 	public int getAnswerid() {
 		return answerid;

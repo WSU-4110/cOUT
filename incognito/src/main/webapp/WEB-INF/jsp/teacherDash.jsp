@@ -9,7 +9,6 @@
   <!-- login pop window  -->
 <link href= "css/index.css" rel= "stylesheet">
   <!-- Theme CSS - Includes Bootstrap -->
-  <link href="css/creative.min.css" rel="stylesheet">
   
   <link href="css/creative.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,8 +85,8 @@ body {
      </c:forEach>
      </table>
      </c:if>
-      	<button type="button" class="btn btn-primary btn-lg" data-target="#myModal" data-toggle="collapse" >Add Class</button>
-	      <div id = "myModal" class = "collapse">
+      	<button type="button" class="btn btn-primary btn-lg" data-target="#addClass" data-toggle="collapse" >Add Class</button>
+	      <div id = "addClass" class = "collapse">
 				      <form action= "/addCourse" method = "POST">
 				     	<div class= "modal-header">
 				     		<h4 class = "modal-title">Add Class</h4>
