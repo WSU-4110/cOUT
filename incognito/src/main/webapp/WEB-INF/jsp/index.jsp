@@ -62,7 +62,9 @@
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">ChatBot</h1>
+        <br> </br>
+        <br> </br>
+          <h1 class="text-uppercase text-white font-weight-bold">Incognito ChatBot</h1>
           <c:if test="${not empty errorMessage}">
 						<div id=test style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div>
 					</c:if>
@@ -73,7 +75,7 @@
           <a class="btn btn-primary btn-xl js-scroll-trigger" href="studentSU">Student</a>
           <a class="btn btn-primary btn-xl js-scroll-trigger" href="teacherSU">Teacher</a>
           <br><br>
-          <p class="text-white-50 font-weight-light mb-5">Have an account.
+          <p class="text-white-50 font-weight-light mb-5">Already have an account?
           <a href="#myModal" class="trigger-btn" data-toggle="modal"> Login here!</a></p>
    <div id="myModal" class="modal fade">
 	<div class="modal-dialog modal-login">
