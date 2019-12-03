@@ -18,7 +18,7 @@
   
 <style>
 body {
-  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  background: url('https://www.pomona.edu/sites/default/files/styles/home_page_slide/public/images/paragraphs/burke-classroom.jpg?itok=wJ2bfbaV') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -45,8 +45,9 @@ body {
         
         
         <li class="nav-item">
-        <a href="/logout" class="btn btn-info btn-logout">
-          Log out
+        <a href="/logout" class="nav-link">
+        <span class="sr-only">(current)</span>
+          Log Out
         </a>
         </li>
       </ul>
@@ -58,33 +59,31 @@ body {
 <div class="container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
-      <h1 class="font-weight-light">Welcome ${name}</h1>
+      <h1 class="font-weight-light">Welcome, ${name}</h1>
       <hr>
       
       <div>
      <c:if test = "${not empty courses}">
      <table>
      <c:forEach var="o" items="${courses}">
-     <tr>
-     <td>
+      <td style = "padding: 25px">
+    <button type = "button" style = "background-color: white; border-radius: 8px" onclick = "window.location.href = '/studentMessageBoard/courses/${o.accessCode}'" onMouseOver = "this.style.color = '#81c5de'" onMouseOut = "this.style.color = 'black'">
      <div>
          
-     	<p>Course Name: ${o.crsName} </p>
+     	<h4 class = "font-weight-bold"> Course Name: </h4> <a style = "color: black; font-size: 20px"> ${o.crsName} </a>
+     
+       <p class = "font-weight-bold" font color = "gray"> Access Code: ${o.accessCode} </p>
      
      </div>
-     </td>
-          <td>
-               <div>
-         
-       <p>accessCode: ${o.accessCode} </p>
-     
-     </div>
+   </button>
    
+   <br> </br>
      </td>
-     </tr>
      </c:forEach>
      </table>
      </c:if>
+     
+   <hr style = "height: 1px; color: black"></hr>
       	<button type="button" class="btn btn-primary btn-lg" data-target="#addClass" data-toggle="collapse" >Join Class</button>
 	      <div id = "addClass" class = "collapse">
 				      <form action= "/joinCourse" method = "POST">

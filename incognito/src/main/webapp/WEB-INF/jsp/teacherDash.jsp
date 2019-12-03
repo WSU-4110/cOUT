@@ -18,7 +18,7 @@
   
 <style>
 body {
-  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  background: url('https://www.pomona.edu/sites/default/files/styles/home_page_slide/public/images/paragraphs/burke-classroom.jpg?itok=wJ2bfbaV') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -44,9 +44,10 @@ body {
         </li>
         
         
-        <li class="nav-item">
-        <a href="/logout" class="btn btn-info btn-logout">
-          Log out
+        <li class="nav-item active">
+        <a href="/logout" class="nav-link">
+        <span class="sr-only">(current)</span>
+          Log Out
         </a>
         </li>
       </ul>
@@ -58,19 +59,19 @@ body {
 <div class="container">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
-      <h1 class="font-weight-light">Welcome ${name}</h1>
+      <h1 class="font-weight-light">Welcome, ${name}</h1>
       <hr>
       
       <div>
      <c:if test = "${not empty courses}">
      <table>
      <c:forEach var="o" items="${courses}">
-     <tr>
-     <td>
-     <button type = "button" style = "background-color: white; border-radius: 8px">
+     <td style = "padding: 25px">
+  
+     <button type = "button" style = "background-color: white; border-radius: 8px" onclick = "window.location.href = '/teacherMessageBoard/courses/${o.accessCode}'" onMouseOver = "this.style.color = '#81c5de'" onMouseOut = "this.style.color = 'black'">
      <div>
          
-     	<h4 class = "font-weight-bold"> Course Name: </h4> <a href= "/teacherMessageBoard/courses/${o.accessCode}" style = "color: black; font-size: 20px"> ${o.crsName} </a>
+     	<h4 class = "font-weight-bold"> Course Name: </h4> <h5 class = "font-weight-light" style = "font-size: 20px"> ${o.crsName} </h5>
      
        <p class = "font-weight-bold" font color = "gray"> Access Code: ${o.accessCode} </p>
      
@@ -78,12 +79,12 @@ body {
    </button>
    
    <br> </br>
-   <hr style = "height: 1px; color: black"></hr>
      </td>
-     </tr>
      </c:forEach>
      </table>
      </c:if>
+     
+    <hr style = "height: 1px; color: black"></hr>
       	<button type="button" class="btn btn-primary btn-lg" data-target="#addClass" data-toggle="collapse" >Add Class</button>
 	      <div id = "addClass" class = "collapse">
 				      <form action= "/addCourse" method = "POST">
