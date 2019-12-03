@@ -31,7 +31,7 @@ body {
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Incognito</a>
+    <a class="navbar-brand" href="/">Incognito</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -67,19 +67,18 @@ body {
      <c:forEach var="o" items="${courses}">
      <tr>
      <td>
+     <button type = "button" style = "background-color: white; border-radius: 8px">
      <div>
          
-     	<p>Course Name: ${o.crsName} </p>
+     	<h4 class = "font-weight-bold"> Course Name: </h4> <a href= "/teacherMessageBoard/courses/${o.accessCode}" style = "color: black; font-size: 20px"> ${o.crsName} </a>
+     
+       <p class = "font-weight-bold" font color = "gray"> Access Code: ${o.accessCode} </p>
      
      </div>
-     </td>
-          <td>
-               <div>
-         
-       <p>accessCode: ${o.accessCode} </p>
-     
-     </div>
+   </button>
    
+   <br> </br>
+   <hr style = "height: 1px; color: black"></hr>
      </td>
      </tr>
      </c:forEach>
