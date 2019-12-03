@@ -25,7 +25,7 @@ body {
   -o-background-size: cover;
 }
 </style>
-<title>Teacher Dashboard</title>
+<title>Student Dashboard</title>
 </head>
 <body>
 <!-- Navigation -->
