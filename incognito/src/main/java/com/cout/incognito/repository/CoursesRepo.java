@@ -12,4 +12,5 @@ import com.cout.incognito.models.Courses;
 public interface CoursesRepo extends CrudRepository<Courses, Integer> {
     List<Courses> findByUser_ID(int user);
     Courses findByAccessCode(int accesscode);
+	Courses findByCrsId(int crsId);
 }
