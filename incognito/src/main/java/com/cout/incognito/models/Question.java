@@ -1,5 +1,6 @@
 package com.cout.incognito.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -17,19 +18,17 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="questions")
 public class Question {
-	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="question_id")
 	private int id;
 	
-	@ManyToOne
-	@MapsId("user_id")
-	@JoinColumn(name = "user_id") 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id",  nullable = true, insertable = true, updatable = false) 
 	private User user;
 	
-    @ManyToOne
-    @MapsId("course")
-    @JoinColumn(name = "course_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id",  nullable = true, insertable = true, updatable = false)
     private Courses course;
     
 	@Column(name="QUESTION")
@@ -44,15 +43,20 @@ public class Question {
 	public Question(){
 		
 	}
-
-	public Question(int id, User user, Courses course, String qUESTION, String aNSWER, boolean is_answered) {
+	
+	public Question(Courses course, User user) {
 		super();
-		this.id = id;
+		this.course = course;
+		this.user = user;
+		is_answered = false;
+	}
+
+	public Question( User user, Courses course, String qUESTION) {
+		super();
 		this.user = user;
 		this.course = course;
 		QUESTION = qUESTION;
-		ANSWER = aNSWER;
-		this.is_answered = is_answered;
+		is_answered = false;
 	}
 
 	public int getId() {
