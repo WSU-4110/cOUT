@@ -40,6 +40,9 @@ public class CourseController {
 	Random rand = new Random();
 	
 	@Autowired
+	private CoursesRepo courseRepository;
+	
+	@Autowired
 	private CoursesService coursesService;
 	
 	@Autowired
@@ -103,6 +106,21 @@ public class CourseController {
 		
 	}
 	
+	@RequestMapping(value="/askQuestion", method=RequestMethod.POST)
+	public String askQuestion( @RequestParam String askQuestion, @RequestParam int accessCode, @RequestParam int crsId) {
+		Courses course = courseRepository.findByCrsId(crsId);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		User userName = userRepo.findByEMAILIgnoreCase(name);
+		
+		Question question = new Question(course, userName);
+		question.setQUESTION(askQuestion);
+		questionRepository.save(question);
+		System.out.println(accessCode);
+		return "redirect:/studentMessageBoard/courses/"+accessCode;
+		
+	}
+	
 	@RequestMapping(value="/joinCourse", method=RequestMethod.POST)
 	public String joinClass(@RequestParam int accessCode) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -114,7 +132,7 @@ public class CourseController {
 		course.setUser(newUser);
 		coursesService.saveCourse(course);
 		
-		return "redirect:/studentMessageBoard/courses/"+accessCode;
+		return "redirect:/studentDash";
 		
 	}
 	
@@ -129,10 +147,12 @@ public class CourseController {
 		List<Question> question = (List<Question>) questionRepository.findAll();
 		List<Question> userQuestions = (List<Question>) questionRepository.findByUser_ID(userName.getID());
 		ModelAndView mv = new ModelAndView("studentMessageBoard");
+		mv.addObject("userQuestion", userQuestions);
 		mv.addObject("question", question);
 		mv.addObject("course", course);
 		
 		return mv;
+		
 		}
 	
 }
