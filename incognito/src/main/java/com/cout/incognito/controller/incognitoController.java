@@ -43,13 +43,18 @@ public class incognitoController implements ErrorController {
 	}
 	
 	@RequestMapping(value="/studentDash", method=RequestMethod.GET)
-	public String studentDash(ModelMap model){
+	public ModelAndView studentDash(ModelMap model){
 	   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	   String name = auth.getName();
 	   User userName = userRepo.findByEMAILIgnoreCase(name);
 	   model.addAttribute("name", userName.getNAME());
-	   
-	   return "studentDash";
+	   List<Courses> courses = (List<Courses>) coursesrepo.findByUser_ID(userName.getID());
+	   ModelAndView mv = new ModelAndView("studentDash"); 
+	   if(courses !=null) {
+		   mv.addObject("courses", courses);	
+	   }
+    
+	   return mv;
 	}
 	
 	@RequestMapping(value="/teacherDash", method=RequestMethod.GET)
