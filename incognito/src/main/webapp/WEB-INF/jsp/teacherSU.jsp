@@ -39,7 +39,7 @@
             <form class="form-signin" method = "POST" action="/registered-Teacher">
             <input type="hidden" name="id" value="${User.ID}">
             <input type="hidden" name="role" value="teacher">
-              <div class="form-label-group">
+              <div class="form-group">
                 <label for="inputName">Name</label>
                 <input type="text" name="NAME" class="form-control" placeholder="Full Name"  required autofocus>
               </div>
@@ -48,19 +48,19 @@
 	              	${emailError}
 	              </div>
 	              
-              <div class="form-label-group">
+              <div class="form-group">
                 <label for="inputEmail">Email</label>
                 <input pattern=".*@wayne.edu" title="Wayne State Email Only" type="email" name="EMAIL" class="form-control" placeholder="Email address"  required>
               </div>
               
               <hr>
 
-              <div class="form-label-group">
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password"  name="password" class="form-control" placeholder="Password"  onchange='validatePassword()' required>
               </div>
               
-              <div class="form-label-group">
+              <div class="form-group">
               	<label for="confirm_password">Confirm password</label>
                 <input type="password" id="confirm_password" class="form-control" placeholder="Password" onkeyup='validatePassword()' required >
               </div>

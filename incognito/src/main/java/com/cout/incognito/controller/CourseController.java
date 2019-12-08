@@ -84,7 +84,7 @@ public class CourseController {
 	@RequestMapping(value= "/teacherMessageBoard/courses/{accessCode}")
 	public ModelAndView getQuestions(@PathVariable int accessCode) {
 		Courses course = coursesService.getCourseByAccessCode(accessCode);
-		List<Question> question = (List<Question>) questionRepository.findAll();
+		List<Question> question = (List<Question>) questionRepository.findByCourse_crsId(course.getCrsId());
 		accessCode = course.getAccessCode();
 		
 		ModelAndView mv = new ModelAndView("teacherMessageBoard");

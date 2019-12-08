@@ -60,7 +60,7 @@ public class UserRegistrationController {
 
 	        emailSenderService.sendEmail(mailMessage);
 
-	        return "redirect:";
+	        return "EmailCheck";
 	    }
 
 }
@@ -92,7 +92,7 @@ public class UserRegistrationController {
 
 	        emailSenderService.sendEmail(mailMessage);
 
-	        return "redirect:";
+	        return "EmailCheck";
 	    }
 
 }
