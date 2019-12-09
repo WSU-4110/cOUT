@@ -16,6 +16,6 @@ public interface QuestionRepository extends CrudRepository<Question, Integer>{
 	
     List<Question> findByUser_ID(int user);
 	Question findById(int id);
-	List<Question> findByCourse_crsId(int crsID);
 	List<Question> OrderByCreatedDateDesc();
+	List<Question> findByCourse_crsId(int crsId);
 }
