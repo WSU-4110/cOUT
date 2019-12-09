@@ -15,6 +15,7 @@ import com.cout.incognito.repository.UserRepo;
 import com.cout.incognito.services.CoursesService;
 import com.cout.incognito.services.QuestionService;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +86,8 @@ public class CourseController {
 	public ModelAndView getQuestions(@PathVariable int accessCode) {
 		Courses course = coursesService.getCourseByAccessCode(accessCode);
 		List<Question> question = (List<Question>) questionRepository.findByCourse_crsId(course.getCrsId());
+		question = questionRepository.OrderByCreatedDateDesc();
 		accessCode = course.getAccessCode();
-		
 		ModelAndView mv = new ModelAndView("teacherMessageBoard");
 		mv.addObject("question", question);
 		mv.addObject("course", course);
@@ -112,8 +113,9 @@ public class CourseController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		User userName = userRepo.findByEMAILIgnoreCase(name);
-		
+		Date date = new Date();
 		Question question = new Question(course, userName);
+		question.setCreatedDate(date);
 		question.setQUESTION(askQuestion);
 		questionRepository.save(question);
 		System.out.println(accessCode);
@@ -154,5 +156,13 @@ public class CourseController {
 		return mv;
 		
 		}
-	
-}
+
+	@RequestMapping(value= "/NudgeQuestion", method=RequestMethod.POST)
+	public String NudgeQuestion(@RequestParam int questionId, @RequestParam int accessCode)
+	{
+		Question question = questionRepository.findById(questionId);
+		questionService.nudgeQuestion(question);
+		
+		return "redirect:/studentMessageBoard/courses/"+accessCode;
+	}
+	}

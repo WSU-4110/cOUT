@@ -19,5 +19,6 @@ public interface IQuestionService {
 	
 	void saveQuestion(Question question);
 
+	void nudgeQuestion(Question question);
 	
 }

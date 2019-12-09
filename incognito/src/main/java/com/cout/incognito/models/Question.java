@@ -1,5 +1,7 @@
 package com.cout.incognito.models;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -11,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -40,6 +44,18 @@ public class Question {
 	@Column(name="isAnswered")
 	private boolean is_answered;
 	
+	@Column(name="createdDate")
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+	
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	
 	public Question(){
 		
 	}
@@ -51,12 +67,13 @@ public class Question {
 		is_answered = false;
 	}
 
-	public Question( User user, Courses course, String qUESTION) {
+	public Question( User user, Courses course, String qUESTION, Date dateCreated) {
 		super();
 		this.user = user;
 		this.course = course;
 		QUESTION = qUESTION;
 		is_answered = false;
+		this.createdDate = dateCreated;
 	}
 
 	public int getId() {

@@ -61,8 +61,6 @@
       <title>Message Board</title>
    </head>
    <body>
-      <!-- Navigation -->
-      <body>
          <!-- Navigation -->
          <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
             <div class="container">
@@ -88,7 +86,7 @@
             <div class="card border-0 shadow my-5">
                <div class="card-body p-5">
                   <h1 class="font-weight-light">${course.crsName}</h1>
-                  <hr>
+                  <br><br>
                   <div class="split left">
                      <div class="centered overflow-auto center">
                         <h2 class = "font-weight-light">Answered Questions</h2>
@@ -100,7 +98,7 @@
                                     <c:if test="${o.is_answered == true}">
                                        <tr>
                                           <td position:absolute>
-                                             <div class="overflow-auto col myStyle" >
+                                             <div class="btn question-primary btn-lg" >
                                                 <p>Question: ${o.QUESTION}</p>
                                                 <p>Answer: ${o.ANSWER}</p>
                                              </div>
@@ -118,24 +116,50 @@
                      <div class="centered overflow-auto center">
                         <h2 class = "font-weight-light">Asked Questions:</h2>
                         <p>Display of questions that student has asked</p>
-                       <div class="overflow-visible col myStyle" >
+                        <table>
                         <c:if test="${not empty userQuestion}">
-                           <table>
+                        
                               <c:forEach var="o" items="${userQuestion}">
+							  <c:if test="${o.is_answered==true}">
+                              
                                  <tr>
                                     <td >
-                                       	<br>
-                                       	  ${o.id})
+                                       	<br>Question: 
                                           ${o.QUESTION}
+                                          <br>Answer: 
                                           ${o.ANSWER}
                                         <br>
                                     </td>
-                                 </tr>
-                              </c:forEach>
-                           </table>
-                        </c:if>
-                        </div>
+           						 <tr>
+           						 </c:if>
+           						 </c:forEach>
+           						 </c:if>
+           				</table>
+           				<hr>
+           				<p>Display of question that are not responded</p>
+           				<table>
+								 <c:if test="${not empty userQuestion}"> 
+				           		<c:forEach var="o" items="${userQuestion}">
+				           		<c:if test="${o.is_answered==false}">				 
+				                <tr>
+				                <td>
+				                <div class="btn question-primary btn-lg" >
+				                  <form action= "/NudgeQuestion" method = "POST">
+				                	${o.QUESTION}
+				             <input type = "hidden" name="questionId" value="${o.id}">
+							<input type="hidden" name="accessCode" value="${course.accessCode}">
+				                <button  class="btn btn-primary btn-md" type = "submit" >Nudge</button>
+				            </form> 
+				            </div>                 
+				     <td><tr>
+				                                 </c:if>
+				                              </c:forEach>
+				                              </c:if>
+				       </table>                 
+                           <hr>
+                           <p>Ask a Question</p>
                         <button type="button" class="btn btn-primary btn-md" data-target="#addClass" data-toggle="collapse" >Ask</button>
+                        </div>
                         <div id = "addClass" class = "collapse">
                            <form action= "/askQuestion" method = "POST">
                               <div class = "modal-body">
@@ -151,12 +175,7 @@
                               </div>
                            </form>
                         </div>
-                     </div>
-                  </div>
-                  <div style="height: 700px"></div>
-                  <p class="lead mb-0">You've reached the end!</p>
-               </div>
-            </div>
-
+                     </div>                  <div style="height: 700px"></div>
+</div></div>
    </body>
 </html>
