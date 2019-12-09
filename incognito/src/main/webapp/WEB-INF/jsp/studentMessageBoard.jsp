@@ -142,14 +142,31 @@
                               <tr>
                                  <td>
                                     <div class="btn question-primary btn-lg" >
-                                       <form action= "/NudgeQuestion" method = "POST">
-                                          ${o.QUESTION}
+                                       <div>${o.QUESTION}</div>
+                                       <form action= "/editQuestionNudge" method="POST">
+
                                           <input type = "hidden" name="questionId" value="${o.id}">
                                           <input type="hidden" name="accessCode" value="${course.accessCode}">
-                                          <button  class="btn btn-primary btn-md" type = "submit" >Nudge</button>
+                                          <button type="submit" class="btn btn-primary btn-md" name="action">Nudge</button>
+                                       </form>
+                                       <form action= "/editQuestionDelete" method="POST">
+                                          <input type = "hidden" name="questionId" value="${o.id}">
+                                          <input type="hidden" name="accessCode" value="${course.accessCode}">
+										  <button type="submit" class="btn btn-danger" name="action">Delete</button>
                                        </form>
                                     </div>
                                  <td>
+                               <!--   <td>
+                                    <div class="btn question-primary btn-lg" >
+                                       <form action= "/deleteQuestion" >
+                                          ${o.QUESTION}
+                                          <input type = "hidden" name="questionId" value="${o.id}">
+                                          <input type="hidden" name="accessCode" value="${course.accessCode}"> 
+                                          <button  onclick="window.location.href= 'CourseController?action=deleteQuestion&questionId=${o.id}$accessCode=${course.accessCode}" class="btn btn-danger btn-md" type = "submit" >Delete</button>
+                                       </form>
+                                    </div>
+                                 <td>
+                                 -->
                               <tr>
                            </c:if>
                         </c:forEach>

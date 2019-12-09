@@ -128,9 +128,15 @@ body {
             <tr>
                 <td position:absolute>
                 <div class="btn question-primary btn-lg" >
-                	${o.QUESTION}
+                	<div>${o.QUESTION}</div>
+                	<button type="button" class="btn btn-primary btn-md" data-target="#addClass" data-toggle="collapse" >Answer</button>
+                	
+		  		<form action= "/teacherQuestionDelete" method="POST">
+		         	<input type = "hidden" name="questionId" value="${o.id}">
+		            <input type="hidden" name="accessCode" value="${course.accessCode}">
+					<button type="submit" class="btn btn-danger" name="action">Delete</button>
+		        </form>
                 </div>
-                <button type="button" class="btn btn-primary btn-md" data-target="#addClass" data-toggle="collapse" >Inspect</button>
 	      <div id = "addClass" class = "collapse">
 				      <form action= "/answeredQuestion" method = "POST">
 				     	<div class = "modal-body">
@@ -140,9 +146,7 @@ body {
 				     	</div>
 				     	<div class="form-group">
 				     	      <input type="hidden" name="accessCode" value="${course.accessCode}">
-							 <input type="submit" class="btn btn-primary btn-lg" float="right" name="action" value="answer">
-			 				 <input type="submit" class="btn btn-primary btn-lg" float="right" name="action" value="delete" >
-						</div> 
+							 <input type="submit" class="btn btn-primary btn-md" float="right" name="action" value="answer">
 					 </form>     
 			    	</div>  
               <hr>
