@@ -154,13 +154,47 @@ public class CourseController {
 		
 		}
 
-	@RequestMapping(value= "/NudgeQuestion", method=RequestMethod.POST)
-	public String NudgeQuestion(@RequestParam int questionId, @RequestParam int accessCode)
+	@RequestMapping(value= "/editQuestionNudge", method=RequestMethod.POST)
+	public String nudgeQuestion(@RequestParam int questionId, @RequestParam int accessCode)
 	{
-		Question question = questionRepository.findById(questionId);
-		questionService.nudgeQuestion(question);
+			Question question = questionRepository.findById(questionId);
+			questionService.nudgeQuestion(question);	
 		
 		return "redirect:/studentMessageBoard/courses/"+accessCode;
+	}
+	
+	@RequestMapping(value= "/editQuestionDelete", method=RequestMethod.POST)
+	public String deleteQuestion(@RequestParam int questionId, @RequestParam int accessCode)
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		User userName = userRepo.findByEMAILIgnoreCase(name);
+		Question question = questionRepository.findById(questionId);
+
+		
+		question.setUser(null);
+		question.setCourse(null);
+		questionRepository.deleteById(question.getId());		
+
+		
+		return "redirect:/studentMessageBoard/courses/"+accessCode;
+	}
+	
+	@RequestMapping(value= "/teacherQuestionDelete", method=RequestMethod.POST)
+	public String teacherDeleteQuestion(@RequestParam int questionId, @RequestParam int accessCode)
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		User userName = userRepo.findByEMAILIgnoreCase(name);
+		Question question = questionRepository.findById(questionId);
+
+		
+		question.setUser(null);
+		question.setCourse(null);
+		questionRepository.deleteById(question.getId());		
+
+		
+		return "redirect:/teacherMessageBoard/courses/"+accessCode;
 	}
 	
 }
