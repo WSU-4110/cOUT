@@ -1,3 +1,4 @@
+## Installation
 1) Clone the repo
 2) Open the project in eclipse 
 3) Under Package explorer, go to pom.xml and update the dependancies in the file
