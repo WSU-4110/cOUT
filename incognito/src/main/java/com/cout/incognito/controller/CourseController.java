@@ -85,11 +85,10 @@ public class CourseController {
 	@RequestMapping(value= "/teacherMessageBoard/courses/{accessCode}")
 	public ModelAndView getQuestions(@PathVariable int accessCode) {
 		Courses course = coursesService.getCourseByAccessCode(accessCode);
-		List<Question> question = (List<Question>) questionRepository.findByCourse_crsId(course.getCrsId());
-		question = questionRepository.OrderByCreatedDateDesc();
+		List<Question> questions = (List<Question>) questionRepository.findByCourse_crsId(course.getCrsId());
 		accessCode = course.getAccessCode();
 		ModelAndView mv = new ModelAndView("teacherMessageBoard");
-		mv.addObject("question", question);
+		mv.addObject("question", questions);
 		mv.addObject("course", course);
 		
 		return mv;
@@ -129,9 +128,7 @@ public class CourseController {
 		String name = auth.getName();
 		User userName = userRepo.findByEMAILIgnoreCase(name);
 		Courses course = coursesService.getCourseByAccessCode(accessCode);
-		List<User> newUser = (List<User>) userRepo.findAll();
-		
-		course.setUser(newUser);
+		course.getUser().add(userName);
 		coursesService.saveCourse(course);
 		
 		return "redirect:/studentDash";
@@ -146,11 +143,11 @@ public class CourseController {
 		String name = auth.getName();
 		User userName = userRepo.findByEMAILIgnoreCase(name);
 		Courses course = coursesService.getCourseByAccessCode(newAccessCode);
-		List<Question> question = (List<Question>) questionRepository.findAll();
+		List<Question> questions = (List<Question>) questionRepository.findByCourse_crsId(course.getCrsId());
 		List<Question> userQuestions = (List<Question>) questionRepository.findByUser_ID(userName.getID());
 		ModelAndView mv = new ModelAndView("studentMessageBoard");
 		mv.addObject("userQuestion", userQuestions);
-		mv.addObject("question", question);
+		mv.addObject("question", questions);
 		mv.addObject("course", course);
 		
 		return mv;
@@ -165,4 +162,5 @@ public class CourseController {
 		
 		return "redirect:/studentMessageBoard/courses/"+accessCode;
 	}
-	}
+	
+}
