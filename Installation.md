@@ -1,5 +1,9 @@
 ## Installation
 1) Clone the repo
+3) Create a workspace on mySQL workbench, named "cout". 
+
+![alt test](screenshot/step2.PNG)
+
 2) Open the project in eclipse 
 3) Under Package explorer, go to pom.xml and update the dependancies in the file
 
