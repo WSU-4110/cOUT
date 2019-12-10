@@ -1,6 +1,7 @@
 package com.cout.incognito.services;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,23 @@ public class QuestionService implements IQuestionService{
 	questionRepository.save(question);
 	}
 
+	public void AutoDelection(List<Question> question)
+	{
+	Iterator<Question>Questioniterator = question.iterator();
+	while (Questioniterator.hasNext())
+	{
+	Question question1 = Questioniterator.next();
+	int date = (int) question1.getCreatedDate().getTime();
+	int today = (int) new Date().getTime();
+	int diffence = today - date;
+	if (diffence > 30)
+	{
+		question1.setCourse(null);
+		question1.setUser(null);
+		questionRepository.deleteById(question1.getId());
+	}
+		}
+	}
 
 	}
 

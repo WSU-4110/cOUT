@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.cout.incognito.models.Answer;
 import com.cout.incognito.models.Courses;
 import com.cout.incognito.models.Question;
 import com.cout.incognito.models.User;
@@ -85,9 +84,10 @@ public class CourseController {
 	@RequestMapping(value= "/teacherMessageBoard/courses/{accessCode}")
 	public ModelAndView getQuestions(@PathVariable int accessCode) {
 		Courses course = coursesService.getCourseByAccessCode(accessCode);
-		List<Question> questions = (List<Question>) questionRepository.findByCourse_crsId(course.getCrsId());
+		List<Question>questions = questionRepository.findByCourse_crsIdOrderByCreatedDateDesc(course.getCrsId());
 		accessCode = course.getAccessCode();
 		ModelAndView mv = new ModelAndView("teacherMessageBoard");
+		//questionService.AutoDelection(question);
 		mv.addObject("question", questions);
 		mv.addObject("course", course);
 		
