@@ -54,7 +54,7 @@ public class QuestionService implements IQuestionService{
 	questionRepository.save(question);
 	}
 
-	public void AutoDelection(List<Question> question)
+	public void AutoDeletion(List<Question> question)
 	{
 	Iterator<Question>Questioniterator = question.iterator();
 	while (Questioniterator.hasNext())
