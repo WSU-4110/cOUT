@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.cout.incognito.models.Courses;
 import com.cout.incognito.models.Question;
 import com.cout.incognito.models.User;
-import com.cout.incognito.repository.AnswerRepository;
 import com.cout.incognito.repository.CoursesRepo;
 import com.cout.incognito.repository.QuestionRepository;
 import com.cout.incognito.repository.UserRepo;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
  
@@ -87,7 +85,7 @@ public class CourseController {
 		List<Question>questions = questionRepository.findByCourse_crsIdOrderByCreatedDateDesc(course.getCrsId());
 		accessCode = course.getAccessCode();
 		ModelAndView mv = new ModelAndView("teacherMessageBoard");
-		//questionService.AutoDelection(question);
+		//questionService.AutoDeletion(question);
 		mv.addObject("question", questions);
 		mv.addObject("course", course);
 		
