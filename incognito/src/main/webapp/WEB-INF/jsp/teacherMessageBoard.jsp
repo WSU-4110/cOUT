@@ -8,9 +8,20 @@
 <%@ page isELIgnored="false" %>
 <meta charset="ISO-8859-1">
  <!-- Theme CSS - Includes Bootstrap -->
-<link href="css/creative.min.css" rel="stylesheet">
+<link href="/css/creative.min.css" rel="stylesheet">
+
+
+  <!-- login pop window  -->
+<link href= "/css/index.css" rel= "stylesheet">
+  <!-- Theme CSS - Includes Bootstrap -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
 body {
+  background: url('https://www.pomona.edu/sites/default/files/styles/home_page_slide/public/images/paragraphs/burke-classroom.jpg?itok=wJ2bfbaV') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -42,32 +53,46 @@ body {
   transform: translate(-50%, -50%,);
   text-align: center;
 }
+.btn {
+   border-color:#f4623a; 
+   background-color: white;
+   color: #f4623a;
+   }
+.btn1 {
+border-color:#f4623a; 
+   background-color: white;
+}
+.btn:hover {
+         background-color:#f4623a;
+         color: white;
+         border-color:#f4623a; 
+         }
+         
 </style>
 <title>Message Board</title>
 </head>
 <body>
 <!-- Navigation -->
+<body>
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="#">Incognito</a>
+    <a class="navbar-brand" href="/">Incognito</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home
+          <a class="nav-link" href="/teacherDash">Dashboard
                 <span class="sr-only">(current)</span>
               </a>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="/logout">Log Out</a>
         </li>
-	 <li class="nav-item">
-        <a href="/logout" class="btn btn-info btn-logout">
-          Log out
-        </a>
-        </li>
+      
       </ul>
     </div>
   </div>
@@ -75,83 +100,86 @@ body {
 
 <!-- Page Content -->
 <div class="container">
-  <div class="card ">
+  <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
-      <h1 class="font-weight-light">Teacher Messaging Board</h1>
+      <h1 class="font-weight-light">${course.crsName}</h1>
+
       <hr>
       <div class="split left">
   		<div class="centered">
-    		<h2 class = "font-weight-light">Answered Questions:</h2>
-    		<p>Display of questions that have already been answered by Teacher</p>
-   <c:if test="${not empty answer}">
-   
-    <table>
-        <c:forEach var="o" items="${answer}">
-
+    		<h2 class = "font-weight-light">Course Message Board</h2>
+    		<br>
+    		<p style = "border-radius: 20px; padding: 10px; border: 2px solid #f4623a;"><i>Class's Answered Questions</i></p>
+    		  		 <c:if test="${not empty question}">
+   <div>
+   <br>
+    <table align = "center">
+        <c:forEach var="o" items="${question}">
+			<c:if test="${o.is_answered == true}">
             <tr>
-                <td position:absolute>
-                <div class="btn question-primary btn-lg" >
-                	<p>Answer: ${o.ANSWER}</p>
- 		<div>
- 	   </div>
+                <td position:absolute>            
+                	<p><b><font face = "Arial">Question: ${o.QUESTION}</font></b></p>
+                	<p><i><font face = "Arial" color = "#f4623a">Answer: ${o.ANSWER}</font></i></p>
+				</td>
+				</tr>
+				</c:if>
         </c:forEach>
     </table>
 
 </c:if>
+</div>
   		</div>
 	</div>
 	
       <div class="split right">
   		<div class="centered">
-	    <h2 class = "font-weight-light">Unanswered Questions:</h2>
-	    <p>Display of questions that still need to be answered</p>
-	    <div>
-	    	<table border="1" cellpadding="2" cellspacing="2">
-<c:if test="${not empty question}">
-
-    <table>
+	    <h2 class = "font-weight-light">Asked Questions:</h2>
+	    <br>
+	    <p style = "border-radius: 20px; padding: 10px; border: 2px solid #f4623a;"><i>Class's Unanswered Questions</i></p>
+	   <c:if test="${not empty question}">
+<br>
+    <table align = "center">
         <c:forEach var="o" items="${question}">
         	<c:if test="${o.is_answered==false}">
             <tr>
-                <td position:absolute>
-                <div class="btn question-primary btn-lg" >
-                	${o.QUESTION}
+                <td position:absolute>               
+               <div style = "border-radius: 20px; padding: 10px; border: 1px solid #f4623a;" >
+                	<div>${o.QUESTION}</div>
+                	<button type="button" class="btn btn-primary btn-xs" data-target="#addClass" data-toggle="collapse" >Answer</button>
+                	
+		  		<form action= "/teacherQuestionDelete" method="POST">
+		         	<input type = "hidden" name="questionId" value="${o.id}">
+		            <input type="hidden" name="accessCode" value="${course.accessCode}">
+					<button type="submit" class="btn btn-danger btn-xs" name="action">Delete</button>
+		        </form>
                 </div>
-	       <button type="button" class="btn btn-sm"  data-toggle="collapse" data-target="#form1" aria-controls="#form1" aria-expanded="false" aria-label="Toggle navigation" >
- 				<span class="navbar-toggler-icon"></span>
- 				Button Collapse
- 				</button>
-<form id="form1" class="form-signin" method = "post" action="/answeredQuestion">
-			<input type="hidden" name="question_id" value="${o.ID}">
-            <input type="hidden" name="id" value = "${answer.answerid}" >
-              <div class="form-label-group">
-              <input type="text" name="ANSWER" class="form-control" placeholder="Answer"  required autofocus>
-              </div>
-
-              
+	      <div id = "addClass" class = "collapse">
+				      <form action= "/answeredQuestion" method = "POST">
+				     	<div class = "modal-body">
+				     		<h5>Answer:</h5>
+				     		<input type = "hidden" name="questionId" value="${o.id}">
+				     		<input type="text" class="form-control" name="answerQuestion" placeholder="Answer Here"required >
+				     	</div>
+				     	<div class="form-group">
+				     	      <input type="hidden" name="accessCode" value="${course.accessCode}">
+							 <input type="submit" class="btn btn-primary btn-xs" float="right" name="action" value="Submit Answer">
+					 </div>
+					 </form>     
+			    </div>			    	
               <hr>
-              
-             <button class="btn btn-primary btn-lg" float="right" type="submit" >Answer</button>
-<button type="button" class="btn btn-primary btn-lg" float="right">Delete</button>
-            </form>
 	</td>
             </tr>
-</c:if>	
+</c:if>
         </c:forEach>
     </table>
 </c:if>
 
 
-	</table>
-	
-
-</div>
-  		</div>
+	      		</div>
 	</div>
       
       
       <div style="height: 700px"></div>
-      <p class="lead mb-0">You've reached the end!</p>
     </div>
   </div>
 </div>
