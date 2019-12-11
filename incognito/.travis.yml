@@ -1,8 +1,0 @@
-language: java
-jdk: oraclejdk8
-script: -mvn clean install
-install: true
-dist: trusty
-cache:
-  directories:
-  - $HOME/.m2
