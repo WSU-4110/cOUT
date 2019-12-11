@@ -130,14 +130,6 @@
 		</dependency>
         
 	</dependencies>
-	<profiles>
-    		<profile>
-        		<id>profile1</id>
-       		 <properties>
-            		<start-class>com.cout.incognito</start-class>
-        	</properties>
-    		</profile>
-	</profiles>
 	<build>
 
 		<plugins>
@@ -146,9 +138,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		 <configuration>
-                        <mainClass>${spring.boot.mainclass}</mainClass>
-                 </configuration>
 	</build>
 
 </project>
