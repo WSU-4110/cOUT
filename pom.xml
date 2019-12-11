@@ -116,6 +116,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
+			<version>5.2.1</version>
 			</dependency>
 		  <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -129,7 +130,14 @@
 		</dependency>
         
 	</dependencies>
-
+	<profiles>
+    		<profile>
+        		<id>profile1</id>
+       		 <properties>
+            		<spring.boot.mainclass>com.cout.incognito</spring.boot.mainclass>
+        	</properties>
+    		</profile>
+	</profiles>
 	<build>
 
 		<plugins>
@@ -138,6 +146,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		 <configuration>
+                        <mainClass>${spring.boot.mainclass}</mainClass>
+                 </configuration>
 	</build>
 
 </project>
